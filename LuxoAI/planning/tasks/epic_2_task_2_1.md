@@ -21,4 +21,3 @@
 
 **Definition of Done:** A script that generates a useful architectural overview in Markdown or a text-based diagram format, committed to the repository. The main README should mention how to run this script.
 ---
-## Epic 3 -- Core Android App (MVP)

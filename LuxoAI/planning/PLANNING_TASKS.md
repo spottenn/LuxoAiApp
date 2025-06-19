@@ -1,3 +1,54 @@
+# Introduction and Guide
+
+This document (`LuxoAI/planning/PLANNING_TASKS.md`) serves as the central backlog for all development tasks related to the LuxoAI project. It is organized into Epics, which are large bodies of work, and individual tasks within those Epics.
+
+## Task Structure
+
+Each task follows a standardized format:
+
+*   **Epic Heading:** Tasks are grouped under level 2 headings, e.g., `## Epic 1 -- Environment & CI Foundation`.
+*   **Task Heading:** Each task starts with a level 1 heading (relative to the Epic, effectively H3 globally if Epics are H2) indicating its Epic and Task number, followed by a descriptive title, e.g., `# Epic X -- Task X.Y: Title`.
+*   **Standard Fields:** Below the task heading, each task is defined by a list of standard fields. Each field starts with its label in bold (e.g., `**Type:**`).
+    *   For single-line content fields such as `**Type:**`, `**Parallelizable?:**`, `**Effort Estimate:**`, and often `**Dependencies:**`, the content follows directly on the *same line* as the label. For example:
+        `**Type:** chore`
+        `**Dependencies:** Task 1.1`
+    *   For fields that typically contain multi-line content, such as `**Background:**`, `**Acceptance Criteria:**`, and `**Definition of Done:**`, the content starts on the *next line* after the label, indented with a new bullet or paragraph.
+    *   `**Acceptance Criteria:**` is typically a bulleted list, with each item starting with `* ` (an asterisk followed by a space) and indented under the label. For example:
+        ```
+        *   **Acceptance Criteria:**
+            *   Criterion 1 explained here.
+            *   Criterion 2 explained here.
+        ```
+    *   The full list of standard fields is: `**Type:**`, `**Background:**`, `**Acceptance Criteria:**`, `**Dependencies:**`, `**Parallelizable?:**`, `**Suggested Labels:**`, `**Effort Estimate:**`, and `**Definition of Done:**`.
+*   **Separator:** Each task definition is followed by a `---` horizontal rule to visually separate it from the next task.
+
+## Adding New Tasks
+
+To add a new task:
+1.  Identify the appropriate Epic for the task.
+2.  Append the new task to the end of that Epic's section.
+3.  Follow the formatting described above, ensuring all standard fields are included.
+4.  Assign a new Task number (e.g., if the last task in Epic 1 was 1.7, the new task will be 1.8).
+5.  Ensure a `---` separator is placed after the new task's "Definition of Done".
+
+## Individual Task Files
+
+The Python script `LuxoAI/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `LuxoAI/planning/tasks/` directory.
+
+After making any modifications to this `PLANNING_TASKS.md` file (e.g., adding, deleting, or editing tasks), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
+```bash
+python LuxoAI/planning/create_task_files.py
+```
+
+## Planning Aids
+
+At the end of this document, you will find:
+*   A **Mermaid diagram** that visually represents the dependencies between tasks.
+*   A **Suggested Execution Timeline** that groups tasks into phases based on their dependencies, providing a possible order of execution.
+
+Please keep these sections updated if you change task dependencies.
+
+---
 ## Epic 1 -- Environment & CI Foundation
 
 # Epic 1 -- Task 1.1: Create Script for Headless Linux Android Build & Test Environment
@@ -115,6 +166,34 @@
 
 **Definition of Done:** A working secrets management system with an example file, gitignore rules, and integration points for Android/Gradle and GitHub Actions. Documentation for usage.
 ---
+# Epic 1 -- Task 1.6: Set Up Linters & Static Analysis
+*   **Type:** `chore`
+*   **Background:**
+    Python: ruff + pre-commit; Android: ktlint or Detekt; CI and Jules VMs fail on lint errors.
+*   **Acceptance Criteria:**
+    *   Linters are set up for Python and Android.
+    *   CI/VMs fail on lint errors.
+*   **Dependencies:** Task 1.4 (CI Workflow)
+*   **Parallelizable?:** `yes`
+*   **Suggested Labels:** `ci`, `lint`, `python`, `android`, `quality`
+*   **Effort Estimate:** M
+*   **Definition of Done:**
+    Linters configured and integrated into CI.
+---
+# Epic 1 -- Task 1.7: Enable Gradle & AVD Cache in CI and Agent VMs
+*   **Type:** `chore`
+*   **Background:**
+    Use GitHub Actions cache and a reusable cache layer (e.g., GitHub Releases or cloud storage) that Jules VMs can download. Measure before/after runtime to prove speed-up.
+*   **Acceptance Criteria:**
+    *   Gradle and AVD caches are enabled in CI and agent VMs.
+    *   Speed-up is demonstrated.
+*   **Dependencies:** Task 1.4 (CI Workflow)
+*   **Parallelizable?:** `yes`
+*   **Suggested Labels:** `ci`, `cache`, `performance`, `gradle`, `android`
+*   **Effort Estimate:** L
+*   **Definition of Done:**
+    Caching implemented and performance improvement verified.
+---
 ## Epic 2 -- Repo Audit & Architecture Doc
 
 # Epic 2 -- Task 2.1: Auto-generate Architecture Diagram/README Section from Existing Code
@@ -139,6 +218,64 @@
 **Effort Estimate:** M
 
 **Definition of Done:** A script that generates a useful architectural overview in Markdown or a text-based diagram format, committed to the repository. The main README should mention how to run this script.
+---
+# Epic 2 -- Task 2.2: Write High-Level Project Overview in README
+*   **Type:** `docs`
+*   **Background:**
+    One-page narrative of architecture & goals; link to generated arch diagram.
+*   **Acceptance Criteria:**
+    *   README contains a high-level project overview with a link to the architecture diagram.
+*   **Dependencies:** Task 2.1 (Auto-generate Architecture Diagram)
+*   **Parallelizable?:** `yes`
+*   **Suggested Labels:** `documentation`, `readme`, `architecture`
+*   **Effort Estimate:** M
+*   **Definition of Done:**
+    README updated with project overview and diagram link.
+---
+# Epic 2 -- Task 2.3: Script: Split Backlog into Individual Task Files
+*   **Type:** `docs/chore`
+*   **Background:**
+    Create `planning/tasks/` (or name you deem best) and generate one Markdown file per task. Provide CI script to keep folder in sync with main backlog.
+*   **Acceptance Criteria:**
+    *   Script for splitting backlog exists.
+    *   CI script keeps task files in sync.
+    *   `planning/tasks/` directory is used.
+*   **Dependencies:** None
+*   **Parallelizable?:** `yes`
+*   **Suggested Labels:** `documentation`, `tooling`, `planning`
+*   **Effort Estimate:** S
+*   **Definition of Done:**
+    Script and CI job for task splitting are implemented.
+---
+# Epic 2 -- Task 2.4: Document Task-Split Mechanism
+*   **Type:** `docs`
+*   **Background:**
+    Explain how and when the script runs, and how agents should open a single-task file instead of the mega-list.
+*   **Acceptance Criteria:**
+    *   Documentation explains the task-split mechanism and usage.
+*   **Dependencies:** Task 2.3 (Script to split backlog)
+*   **Parallelizable?:** `yes`
+*   **Suggested Labels:** `documentation`, `planning`, `developer-ux`
+*   **Effort Estimate:** S
+*   **Definition of Done:**
+    Task-split mechanism is documented.
+---
+# Epic 2 -- Task 2.5: Audit & Correct Dependency Graph
+*   **Type:** `chore`
+*   **Background:**
+    The `PLANNING_TASKS.md` file lists numerous tasks. This task is to perform a thorough review of all defined tasks to identify any unstated or missing dependencies between them. The goal is to ensure the dependency graph is as accurate as possible.
+*   **Acceptance Criteria:**
+    *   All tasks in `PLANNING_TASKS.md` reviewed.
+    *   Any discovered missing dependencies are explicitly added to the respective tasks' `Dependencies:` fields.
+    *   The Mermaid dependency graph in `PLANNING_TASKS.md` is updated to reflect these corrections.
+    *   A patch with these changes is committed.
+*   **Dependencies:**
+    `PLANNING_TASKS.md` populated and largely finalized.
+*   **Parallelizable?:** `no`
+*   **Suggested Labels:** `planning`, `dependencies`, `quality`
+*   **Effort Estimate:** M
+*   **Definition of Done:**
+    Dependency graph corrected and updated.
 ---
 ## Epic 3 -- Core Android App (MVP)
 
@@ -665,6 +802,10 @@ graph TD;
     1.3 --> 1.1
     1.4 --> 1.1
     1.4 --> 1.2
+    1.4 --> 1.6
+    1.4 --> 1.7
+    2.1 --> 2.2
+    2.3 --> 2.4
     3.1 --> 1.1
     3.2 --> 3.1
     3.3 --> 3.2
@@ -705,12 +846,16 @@ graph TD;
     *   Task 1.1 (Parallelizable) (Depends on )
     *   Task 1.5 (Parallelizable) (Depends on )
     *   Task 2.1 (Parallelizable) (Depends on )
+    *   Task 2.3 (Parallelizable) (Depends on None)
     *   Task 9.3 (Parallelizable) (Depends on )
     *   Task 10.2 (Parallelizable) (Depends on )
 
 *   **Phase 2:** (Tasks dependent on previous phase completions)
     *   Task 1.2 (Parallelizable) (Depends on 1.1)
     *   Task 1.3 (Depends on 1.1)
+    *   Task 2.2 (Parallelizable) (Depends on 2.1)
+    *   Task 2.4 (Parallelizable) (Depends on 2.3)
+    *   Task 2.5 (no) (Depends on PLANNING_TASKS.md populated and largely finalized.)
     *   Task 3.1 (Parallelizable) (Depends on 1.1)
     *   Task 5.1 (Parallelizable) (Depends on 1.1)
     *   Task 6.1 (Parallelizable) (Depends on 1.5)
@@ -722,6 +867,8 @@ graph TD;
     *   Task 3.2 (Depends on 3.1)
 
 *   **Phase 4:** (Tasks dependent on previous phase completions)
+    *   Task 1.6 (Parallelizable) (Depends on 1.4)
+    *   Task 1.7 (Parallelizable) (Depends on 1.4)
     *   Task 3.3 (Depends on 3.2)
     *   Task 4.1 (Depends on 1.3, 3.2)
     *   Task 8.1 (Parallelizable) (Depends on 1.4)

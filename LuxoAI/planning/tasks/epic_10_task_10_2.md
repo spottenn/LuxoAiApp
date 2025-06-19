@@ -31,6 +31,10 @@ graph TD;
     1.3 --> 1.1
     1.4 --> 1.1
     1.4 --> 1.2
+    1.4 --> 1.6
+    1.4 --> 1.7
+    2.1 --> 2.2
+    2.3 --> 2.4
     3.1 --> 1.1
     3.2 --> 3.1
     3.3 --> 3.2
@@ -71,12 +75,16 @@ graph TD;
     *   Task 1.1 (Parallelizable) (Depends on )
     *   Task 1.5 (Parallelizable) (Depends on )
     *   Task 2.1 (Parallelizable) (Depends on )
+    *   Task 2.3 (Parallelizable) (Depends on None)
     *   Task 9.3 (Parallelizable) (Depends on )
     *   Task 10.2 (Parallelizable) (Depends on )
 
 *   **Phase 2:** (Tasks dependent on previous phase completions)
     *   Task 1.2 (Parallelizable) (Depends on 1.1)
     *   Task 1.3 (Depends on 1.1)
+    *   Task 2.2 (Parallelizable) (Depends on 2.1)
+    *   Task 2.4 (Parallelizable) (Depends on 2.3)
+    *   Task 2.5 (no) (Depends on PLANNING_TASKS.md populated and largely finalized.)
     *   Task 3.1 (Parallelizable) (Depends on 1.1)
     *   Task 5.1 (Parallelizable) (Depends on 1.1)
     *   Task 6.1 (Parallelizable) (Depends on 1.5)
@@ -88,6 +96,8 @@ graph TD;
     *   Task 3.2 (Depends on 3.1)
 
 *   **Phase 4:** (Tasks dependent on previous phase completions)
+    *   Task 1.6 (Parallelizable) (Depends on 1.4)
+    *   Task 1.7 (Parallelizable) (Depends on 1.4)
     *   Task 3.3 (Depends on 3.2)
     *   Task 4.1 (Depends on 1.3, 3.2)
     *   Task 8.1 (Parallelizable) (Depends on 1.4)
