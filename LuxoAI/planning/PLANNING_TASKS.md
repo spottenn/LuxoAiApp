@@ -1,5 +1,6 @@
----
-# Task 1.1: Create Script for Headless Linux Android Build & Test Environment
+## Epic 1 -- Environment & CI Foundation
+
+# Epic 1 -- Task 1.1: Create Script for Headless Linux Android Build & Test Environment
 
 **Type:** `chore`
 
@@ -22,7 +23,7 @@
 
 **Definition of Done:** A functional bash script (or Dockerfile and accompanying script) committed to the repository that sets up the build environment and successfully builds the app.
 ---
-# Task 1.2: Script Android SDK & Emulator Installation and Management
+# Epic 1 -- Task 1.2: Script Android SDK & Emulator Installation and Management
 
 **Type:** `chore`
 
@@ -44,7 +45,7 @@
 
 **Definition of Done:** Scripts to install SDK components and create/manage a headless AVD, integrated with the environment from Task 1.1.
 ---
-# Task 1.3: Integrate Chaquopy (Python-on-Android) into Gradle
+# Epic 1 -- Task 1.3: Integrate Chaquopy (Python-on-Android) into Gradle
 
 **Type:** `feature`
 
@@ -66,7 +67,7 @@
 
 **Definition of Done:** The LuxoAI app successfully builds with Chaquopy, and a basic Python script runs on app startup, with its output visible in Android's Logcat.
 ---
-# Task 1.4: Develop GitHub Actions Workflow for Build, Emulator Launch, and Tests
+# Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build, Emulator Launch, and Tests
 
 **Type:** `chore`
 
@@ -90,7 +91,7 @@
 
 **Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and (placeholder) test process in an emulator.
 ---
-# Task 1.5: Design and Implement Secrets Injection Mechanism
+# Epic 1 -- Task 1.5: Design and Implement Secrets Injection Mechanism
 
 **Type:** `chore`
 
@@ -114,7 +115,9 @@
 
 **Definition of Done:** A working secrets management system with an example file, gitignore rules, and integration points for Android/Gradle and GitHub Actions. Documentation for usage.
 ---
-# Task 2.1: Auto-generate Architecture Diagram/README Section from Existing Code
+## Epic 2 -- Repo Audit & Architecture Doc
+
+# Epic 2 -- Task 2.1: Auto-generate Architecture Diagram/README Section from Existing Code
 
 **Type:** `docs`
 
@@ -137,7 +140,9 @@
 
 **Definition of Done:** A script that generates a useful architectural overview in Markdown or a text-based diagram format, committed to the repository. The main README should mention how to run this script.
 ---
-# Task 3.1: Implement Minimal GUI with Text Field and 'Start Agent' Button
+## Epic 3 -- Core Android App (MVP)
+
+# Epic 3 -- Task 3.1: Implement Minimal GUI with Text Field and 'Start Agent' Button
 
 **Type:** `feature`
 
@@ -160,7 +165,7 @@
 
 **Definition of Done:** An Android app with the described UI elements. The button click logs the text field content.
 ---
-# Task 3.2: Create Foreground Service to Keep Agent Alive
+# Epic 3 -- Task 3.2: Create Foreground Service to Keep Agent Alive
 
 **Type:** `feature`
 
@@ -183,7 +188,7 @@
 
 **Definition of Done:** A functional foreground service that starts on button press, shows a notification, and continues running when the app is backgrounded.
 ---
-# Task 3.3: Integrate Accessibility Service for UI Interaction Simulation
+# Epic 3 -- Task 3.3: Integrate Accessibility Service for UI Interaction Simulation
 
 **Type:** `feature`
 
@@ -206,7 +211,9 @@
 
 **Definition of Done:** A functional Accessibility Service that can inspect UI elements and simulate basic interactions, with a mechanism to guide the user through enabling it.
 ---
-# Task 4.1: Hook Python Orchestrator into Android App via Chaquopy
+## Epic 4 -- Python Agent Embedding
+
+# Epic 4 -- Task 4.1: Hook Python Orchestrator into Android App via Chaquopy
 
 **Type:** `feature`
 
@@ -229,7 +236,7 @@
 
 **Definition of Done:** The Android app can successfully initialize and run the core Python agent orchestrator, passing it a task string from the UI. Python logs are visible in Logcat.
 ---
-# Task 4.2: Implement IPC/In-Proc Bridge for UI-Python Communication
+# Epic 4 -- Task 4.2: Implement IPC/In-Proc Bridge for UI-Python Communication
 
 **Type:** `feature`
 
@@ -251,7 +258,9 @@
 
 **Definition of Done:** A robust communication bridge allowing two-way calls between Python logic and Android (service/UI) components. Status updates from Python can be reflected in the Android UI.
 ---
-# Task 5.1: Select and Integrate OCR Model Runtime for On-Device Inference
+## Epic 5 -- OCR On-Device Integration
+
+# Epic 5 -- Task 5.1: Select and Integrate OCR Model Runtime for On-Device Inference
 
 **Type:** `feature`
 
@@ -274,7 +283,7 @@
 
 **Definition of Done:** The selected OCR model runtime is integrated into the app, and the OCR model can be loaded successfully. Basic inference path is testable.
 ---
-# Task 5.2: Implement OCR Inference with < 1s Average Speed
+# Epic 5 -- Task 5.2: Implement OCR Inference with < 1s Average Speed
 
 **Type:** `feature`
 
@@ -299,7 +308,7 @@
 
 **Definition of Done:** OCR inference is functional, meets the <1s average speed target on the CI emulator, and can be invoked from Python code with image input, returning structured text output.
 ---
-# Task 5.3: Create Automated Performance Test for OCR Inference Speed
+# Epic 5 -- Task 5.3: Create Automated Performance Test for OCR Inference Speed
 
 **Type:** `test`
 
@@ -323,7 +332,9 @@
 
 **Definition of Done:** An automated test that measures OCR inference speed and fails CI if the <1s average or 10s hard cap is breached.
 ---
-# Task 6.1: Create Grounding DINO Wrapper for Replicate API
+## Epic 6 -- Remote Model Harnesses
+
+# Epic 6 -- Task 6.1: Create Grounding DINO Wrapper for Replicate API
 
 **Type:** `feature`
 
@@ -348,7 +359,7 @@
 
 **Definition of Done:** A Python wrapper that allows the agent to get object detection results from Grounding DINO via Replicate using an image and a text prompt.
 ---
-# Task 6.2: Abstract LLM Planning Calls Behind a Provider Interface
+# Epic 6 -- Task 6.2: Abstract LLM Planning Calls Behind a Provider Interface
 
 **Type:** `feature`
 
@@ -371,7 +382,9 @@
 
 **Definition of Done:** An LLM provider interface and at least one concrete implementation, allowing the agent to make LLM calls without being tied to a specific provider.
 ---
-# Task 7.1: Implement Opt-in Confirmation Checkpoints for Potentially Destructive Actions
+## Epic 7 -- Safety & Human-in-the-Loop
+
+# Epic 7 -- Task 7.1: Implement Opt-in Confirmation Checkpoints for Potentially Destructive Actions
 
 **Type:** `feature`
 
@@ -395,7 +408,7 @@
 
 **Definition of Done:** A system where the agent requests user confirmation via a UI dialog before performing defined sensitive/destructive actions.
 ---
-# Task 7.2: Add Easy Manual Override / Cancel Functionality
+# Epic 7 -- Task 7.2: Add Easy Manual Override / Cancel Functionality
 
 **Type:** `feature`
 
@@ -418,7 +431,9 @@
 
 **Definition of Done:** A reliable way for the user to cancel the agent's current task at any time through the Android UI.
 ---
-# Task 8.1: Implement Python Unit Tests (pytest)
+## Epic 8 -- Automated Testing Suite
+
+# Epic 8 -- Task 8.1: Implement Python Unit Tests (pytest)
 
 **Type:** `test`
 
@@ -442,7 +457,7 @@
 
 **Definition of Done:** A suite of pytest unit tests for the Python agent code, integrated into and passing in the CI pipeline.
 ---
-# Task 8.2: Implement Android Instrumentation/Compose Tests for UI & Service
+# Epic 8 -- Task 8.2: Implement Android Instrumentation/Compose Tests for UI & Service
 
 **Type:** `test`
 
@@ -469,7 +484,7 @@
 
 **Definition of Done:** Android instrumentation tests covering basic UI and service functionality, integrated into and passing in the CI emulator.
 ---
-# Task 8.3: Develop End-to-End Tests Running in CI Emulator
+# Epic 8 -- Task 8.3: Develop End-to-End Tests Running in CI Emulator
 
 **Type:** `test`
 
@@ -494,7 +509,7 @@
 
 **Definition of Done:** At least one E2E test scenario that runs the full agent loop (UI input -> Python -> UI interaction) in the CI emulator and verifies a successful outcome.
 ---
-# Task 8.4: (Optional) Hook to Firebase Test Lab if Cost-Effective
+# Epic 8 -- Task 8.4: (Optional) Hook to Firebase Test Lab if Cost-Effective
 
 **Type:** `test`
 
@@ -518,7 +533,9 @@
 
 **Definition of Done:** Either FTL is integrated for test runs within the budget, or a documented decision is made not to use it based on cost.
 ---
-# Task 9.1: Update Root README with One-Command Setup, Run, and Test Instructions
+## Epic 9 -- Docs & Developer UX
+
+# Epic 9 -- Task 9.1: Update Root README with One-Command Setup, Run, and Test Instructions
 
 **Type:** `docs`
 
@@ -545,7 +562,7 @@
 
 **Definition of Done:** Root `README.md` is updated with comprehensive and easy-to-follow setup, run, and test instructions.
 ---
-# Task 9.2: Document Secrets-Injection Mechanism
+# Epic 9 -- Task 9.2: Document Secrets-Injection Mechanism
 
 **Type:** `docs`
 
@@ -567,7 +584,7 @@
 
 **Definition of Done:** Clear documentation for setting up and using the secrets-injection mechanism.
 ---
-# Task 9.3: Define Commit-Message Conventions and Code-Style Tips
+# Epic 9 -- Task 9.3: Define Commit-Message Conventions and Code-Style Tips
 
 **Type:** `docs`
 
@@ -589,7 +606,9 @@
 
 **Definition of Done:** Documented commit message conventions and code style guidelines.
 ---
-# Task 10.1: Create CI Job for Signing and Outputting a Versioned APK
+## Epic 10 -- Sideloadable Release
+
+# Epic 10 -- Task 10.1: Create CI Job for Signing and Outputting a Versioned APK
 
 **Type:** `chore`
 
@@ -613,7 +632,7 @@
 
 **Definition of Done:** The CI pipeline produces a signed, versioned APK as a downloadable artifact on every successful build of the `main` branch (or on tagged releases).
 ---
-# Task 10.2: Create a Release Notes Template
+# Epic 10 -- Task 10.2: Create a Release Notes Template
 
 **Type:** `docs`
 
@@ -639,3 +658,86 @@
 **Effort Estimate:** S
 
 **Definition of Done:** A `RELEASE_NOTES_TEMPLATE.md` file is committed to the repository.
+
+```mermaid
+graph TD;
+    1.2 --> 1.1
+    1.3 --> 1.1
+    1.4 --> 1.1
+    1.4 --> 1.2
+    3.1 --> 1.1
+    3.2 --> 3.1
+    3.3 --> 3.2
+    4.1 --> 1.3
+    4.1 --> 3.2
+    4.2 --> 3.3
+    4.2 --> 4.1
+    5.1 --> 1.1
+    5.2 --> 4.2
+    5.2 --> 5.1
+    5.3 --> 1.4
+    5.3 --> 5.2
+    6.1 --> 1.5
+    6.2 --> 1.5
+    7.1 --> 4.2
+    7.2 --> 3.2
+    7.2 --> 4.2
+    8.1 --> 1.4
+    8.2 --> 1.4
+    8.2 --> 3.1
+    8.2 --> 3.2
+    8.3 --> 1.4
+    8.3 --> 3.3
+    8.3 --> 4.1
+    8.4 --> 8.2
+    8.4 --> 8.3
+    9.1 --> 1.1
+    9.1 --> 8.1
+    9.1 --> 8.2
+    9.2 --> 1.5
+    10.1 --> 1.4
+    10.1 --> 1.5
+```
+
+### Suggested Execution Timeline
+
+*   **Phase 1:**
+    *   Task 1.1 (Parallelizable) (Depends on )
+    *   Task 1.5 (Parallelizable) (Depends on )
+    *   Task 2.1 (Parallelizable) (Depends on )
+    *   Task 9.3 (Parallelizable) (Depends on )
+    *   Task 10.2 (Parallelizable) (Depends on )
+
+*   **Phase 2:** (Tasks dependent on previous phase completions)
+    *   Task 1.2 (Parallelizable) (Depends on 1.1)
+    *   Task 1.3 (Depends on 1.1)
+    *   Task 3.1 (Parallelizable) (Depends on 1.1)
+    *   Task 5.1 (Parallelizable) (Depends on 1.1)
+    *   Task 6.1 (Parallelizable) (Depends on 1.5)
+    *   Task 6.2 (Parallelizable) (Depends on 1.5)
+    *   Task 9.2 (Parallelizable) (Depends on 1.5)
+
+*   **Phase 3:** (Tasks dependent on previous phase completions)
+    *   Task 1.4 (Parallelizable) (Depends on 1.1, 1.2)
+    *   Task 3.2 (Depends on 3.1)
+
+*   **Phase 4:** (Tasks dependent on previous phase completions)
+    *   Task 3.3 (Depends on 3.2)
+    *   Task 4.1 (Depends on 1.3, 3.2)
+    *   Task 8.1 (Parallelizable) (Depends on 1.4)
+    *   Task 8.2 (Parallelizable) (Depends on 3.1, 3.2, 1.4)
+    *   Task 10.1 (Parallelizable) (Depends on 1.4, 1.5)
+
+*   **Phase 5:** (Tasks dependent on previous phase completions)
+    *   Task 4.2 (Depends on 4.1, 3.3)
+    *   Task 9.1 (Parallelizable) (Depends on 1.1, 8.1, 8.2)
+
+*   **Phase 6:** (Tasks dependent on previous phase completions)
+    *   Task 5.2 (Depends on 5.1, 4.2)
+    *   Task 7.1 (Depends on 4.2)
+    *   Task 7.2 (Depends on 3.2, 4.2)
+    *   Task 8.3 (Depends on 3.3, 4.1, 1.4)
+
+*   **Phase 7:** (Tasks dependent on previous phase completions)
+    *   Task 5.3 (Parallelizable) (Depends on 5.2, 1.4)
+    *   Task 8.4 (Parallelizable) (Depends on 8.2, 8.3)
