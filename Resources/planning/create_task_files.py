@@ -3,8 +3,34 @@ import re
 
 # Constants are relative to the repository root,
 # as the script is likely executed from there by tools/users.
-PLANNING_TASKS_FILE = "LuxoAI/planning/PLANNING_TASKS.md"
-OUTPUT_DIR = "LuxoAI/planning/tasks/"
+PLANNING_TASKS_FILE = "Resources/planning/PLANNING_TASKS.md"
+OUTPUT_DIR = "Resources/planning/tasks/"
+STATUS_FILE = "Resources/planning/task-status.md"
+
+
+def load_task_statuses(status_file_path):
+    """
+    Loads task statuses from the given status file.
+    Returns a dictionary mapping filenames to their statuses.
+    Example: {"epic_1_task_1_1.md": "Not Started"}
+    """
+    statuses = {}
+    try:
+        with open(status_file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("- ") and ": " in line:
+                    parts = line[2:].split(": ", 1)
+                    if len(parts) == 2:
+                        filename = parts[0].strip()
+                        status = parts[1].strip()
+                        statuses[filename] = status
+    except FileNotFoundError:
+        print(f"Warning: Status file not found at '{status_file_path}'. No statuses will be loaded.")
+    except Exception as e:
+        print(f"Error reading status file {status_file_path}: {e}")
+    return statuses
+
 
 def parse_and_save_tasks():
     try:
@@ -20,6 +46,7 @@ def parse_and_save_tasks():
         return
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    task_statuses = load_task_statuses(STATUS_FILE)
 
     # Regex to find task headings (e.g., "# Epic 1 -- Task 1.1: Title")
     task_pattern = r"^# Epic \d+ -- Task (\d+\.\d+):.*"
@@ -80,8 +107,13 @@ def parse_and_save_tasks():
             # Write the (potentially modified) task content to its file
             # .strip() removes leading/trailing whitespace from the slice, then add one newline.
             with open(filename, 'w', encoding='utf-8') as f:
+                # Get base filename for status lookup, e.g., "epic_1_task_1_1.md"
+                base_filename = os.path.basename(filename)
+                status = task_statuses.get(base_filename, "Not Started") # Default if not found
+
+                f.write(f"Status: {status}\n\n")
                 f.write(current_task_content.strip() + "\n")
-            print(f"Successfully wrote task {task_id} to {filename}")
+            print(f"Successfully wrote task {task_id} to {filename} with status '{status}'")
         except IOError as e:
             print(f"Error writing file {filename}: {e}")
 

@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 9 -- Task 9.1: Update Root README with One-Command Setup, Run, and Test Instructions
 
 **Type:** `docs`

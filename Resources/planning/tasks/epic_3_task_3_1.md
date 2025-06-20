@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 3 -- Task 3.1: Implement Minimal GUI with Text Field and 'Start Agent' Button
 
 **Type:** `feature`

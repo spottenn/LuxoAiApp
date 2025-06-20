@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.2: Script Android SDK & Emulator Installation and Management
 
 **Type:** `chore`

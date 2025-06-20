@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 3 -- Task 3.2: Create Foreground Service to Keep Agent Alive
 
 **Type:** `feature`

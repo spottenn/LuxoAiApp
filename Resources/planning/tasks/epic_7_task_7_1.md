@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 7 -- Task 7.1: Implement Opt-in Confirmation Checkpoints for Potentially Destructive Actions
 
 **Type:** `feature`

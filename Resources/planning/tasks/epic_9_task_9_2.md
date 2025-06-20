@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 9 -- Task 9.2: Document Secrets-Injection Mechanism
 
 **Type:** `docs`

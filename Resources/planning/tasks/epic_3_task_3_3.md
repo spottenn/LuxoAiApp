@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 3 -- Task 3.3: Integrate Accessibility Service for UI Interaction Simulation
 
 **Type:** `feature`

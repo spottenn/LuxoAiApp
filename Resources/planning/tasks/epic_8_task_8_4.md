@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 8 -- Task 8.4: (Optional) Hook to Firebase Test Lab if Cost-Effective
 
 **Type:** `test`

@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 2 -- Task 2.2: Write High-Level Project Overview in README
 *   **Type:** `docs`
 *   **Background:**

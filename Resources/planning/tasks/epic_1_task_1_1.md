@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.1: Create Script for Headless Linux Android Build & Test Environment
 
 **Type:** `chore`

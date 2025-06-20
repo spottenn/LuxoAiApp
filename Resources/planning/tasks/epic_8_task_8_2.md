@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 8 -- Task 8.2: Implement Android Instrumentation/Compose Tests for UI & Service
 
 **Type:** `test`

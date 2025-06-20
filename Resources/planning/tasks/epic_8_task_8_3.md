@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 8 -- Task 8.3: Develop End-to-End Tests Running in CI Emulator
 
 **Type:** `test`

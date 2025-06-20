@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 2 -- Task 2.3: Script: Split Backlog into Individual Task Files
 *   **Type:** `docs/chore`
 *   **Background:**

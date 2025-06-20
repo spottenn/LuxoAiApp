@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 5 -- Task 5.3: Create Automated Performance Test for OCR Inference Speed
 
 **Type:** `test`

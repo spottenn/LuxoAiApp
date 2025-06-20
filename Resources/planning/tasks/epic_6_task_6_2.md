@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 6 -- Task 6.2: Abstract LLM Planning Calls Behind a Provider Interface
 
 **Type:** `feature`

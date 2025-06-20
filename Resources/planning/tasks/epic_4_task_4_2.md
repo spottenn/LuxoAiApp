@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 4 -- Task 4.2: Implement IPC/In-Proc Bridge for UI-Python Communication
 
 **Type:** `feature`

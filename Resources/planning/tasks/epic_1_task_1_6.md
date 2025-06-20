@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.6: Set Up Linters & Static Analysis
 *   **Type:** `chore`
 *   **Background:**

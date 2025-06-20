@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 7 -- Task 7.2: Add Easy Manual Override / Cancel Functionality
 
 **Type:** `feature`

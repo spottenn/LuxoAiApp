@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 10 -- Task 10.1: Create CI Job for Signing and Outputting a Versioned APK
 
 **Type:** `chore`

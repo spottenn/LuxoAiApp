@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 10 -- Task 10.2: Create a Release Notes Template
 
 **Type:** `docs`

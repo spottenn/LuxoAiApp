@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 6 -- Task 6.1: Create Grounding DINO Wrapper for Replicate API
 
 **Type:** `feature`

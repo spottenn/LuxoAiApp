@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build, Emulator Launch, and Tests
 
 **Type:** `chore`

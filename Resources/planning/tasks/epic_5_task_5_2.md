@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 5 -- Task 5.2: Implement OCR Inference with < 1s Average Speed
 
 **Type:** `feature`

@@ -1,6 +1,6 @@
 # Introduction and Guide
 
-This document (`LuxoAI/planning/PLANNING_TASKS.md`) serves as the central backlog for all development tasks related to the LuxoAI project. It is organized into Epics, which are large bodies of work, and individual tasks within those Epics.
+This document (`Resources/planning/PLANNING_TASKS.md`) serves as the central backlog for all development tasks related to the LuxoAI project. It is organized into Epics, which are large bodies of work, and individual tasks within those Epics.
 
 ## Task Structure
 
@@ -33,11 +33,11 @@ To add a new task:
 
 ## Individual Task Files
 
-The Python script `LuxoAI/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `LuxoAI/planning/tasks/` directory.
+The Python script `Resources/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `Resources/planning/tasks/` directory.
 
 After making any modifications to this `PLANNING_TASKS.md` file (e.g., adding, deleting, or editing tasks), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
 ```bash
-python LuxoAI/planning/create_task_files.py
+python Resources/planning/create_task_files.py
 ```
 
 ## Planning Aids
@@ -45,6 +45,7 @@ python LuxoAI/planning/create_task_files.py
 At the end of this document, you will find:
 *   A **Mermaid diagram** that visually represents the dependencies between tasks.
 *   A **Suggested Execution Timeline** that groups tasks into phases based on their dependencies, providing a possible order of execution.
+*   A link to the **[Task Status](task-status.md)** document for an overview of current progress.
 
 Please keep these sections updated if you change task dependencies.
 

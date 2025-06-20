@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.5: Design and Implement Secrets Injection Mechanism
 
 **Type:** `chore`

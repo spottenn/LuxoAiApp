@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 1 -- Task 1.7: Enable Gradle & AVD Cache in CI and Agent VMs
 *   **Type:** `chore`
 *   **Background:**

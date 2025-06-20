@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 5 -- Task 5.1: Select and Integrate OCR Model Runtime for On-Device Inference
 
 **Type:** `feature`

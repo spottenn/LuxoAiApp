@@ -1,3 +1,5 @@
+Status: Not Started
+
 # Epic 2 -- Task 2.4: Document Task-Split Mechanism
 *   **Type:** `docs`
 *   **Background:**
