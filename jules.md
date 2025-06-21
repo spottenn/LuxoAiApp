@@ -11,7 +11,9 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 *   **`LuxoAI/`**: Android application project.
     *   `app/`: Main Android application module (Java/Kotlin, XML/Compose).
     *   `build.gradle.kts`, `settings.gradle.kts`: Gradle build configuration. Chaquopy (Python integration) is configured here.
-    *   `planning/tasks/`: Detailed Markdown task specifications (e.g., `epic_1_task_1_1.md`). **Strictly adhere to the assigned task file.** This path is actually `Resources/planning/tasks/`.
+*   **`Resources/`**: Contains project resources.
+    *   `environment_summary_report.md`: Overview of the execution environment.
+    *   `planning/tasks/`: Detailed Markdown task specifications (e.g., `epic_1_task_1_1.md`). **Strictly adhere to the assigned task file.**
 *   **`Mobile-Agent-E/`**: Legacy Python desktop agent codebase.
     *   `MobileAgentE/`: Core Python agent logic (control, OCR, model interaction). Source OCR models reside here.
     *   `requirements.txt`: Python dependencies for the legacy agent.
@@ -55,7 +57,7 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 
 ## 6. Task Execution Protocol
 
-Upon assignment of a task (e.g., `Resources/planning/tasks/epic_X_task_Y_Z.md`):
+Upon assignment of a task (e.g., `LuxoAI/planning/tasks/epic_X_task_Y_Z.md`):
 
 1.  **Internalize Task File**: Parse and comprehend all details within the specified Markdown task file. This is your primary source of truth for the task.
     *   Focus on: **Background**, **Acceptance Criteria**, **Definition of Done**.
@@ -66,7 +68,3 @@ Upon assignment of a task (e.g., `Resources/planning/tasks/epic_X_task_Y_Z.md`):
     *   Employ clear, structured commit messages.
     *   Prefix messages with type (e.g., `feat:`, `fix:`, `test:`, `docs:`).
     *   Reference the full task filename in the commit body or subject.
-
-## 7. Planning Documents
-
-*   [Task Status](Resources/planning/task-status.md)
