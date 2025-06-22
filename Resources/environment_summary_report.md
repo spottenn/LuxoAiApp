@@ -60,3 +60,12 @@ Summary of Identifiable Virtual Hardware & Limits:
 *   Memory: ~7.8 GiB total, with ~7.5 GiB usable by a single process before OOM kill.
 *   Storage: ~9.8 GiB available on the primary partition. Specific I/O performance and file count limits are unknown due to tool failures.
 *   Process/Thread Limits: Unknown due to tool failures.
+
+6.  Preinstalled Libraries Relevant to LuxoAI:
+    *   Python: 3.12.11 (Includes pip 25.1.1)
+    *   Java: OpenJDK 21.0.7
+    *   Gradle: 8.8
+    *   Git: 2.49.0
+    *   Curl: 8.5.0
+    *   Standard Linux Utilities: awk, grep, gzip, jq, make, sed, tar, etc. are available.
+    *   Note: Android SDK and related tools (e.g., Android Emulator, ADB) are not preinstalled on the base VM and will be managed by the project's specific Android environment setup (e.g., within CI or a development environment).
