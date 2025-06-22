@@ -17,7 +17,7 @@ PLATFORM_VERSION="android-35"
 BUILD_TOOLS_VERSION="35.0.0"
 
 # Command line options
-VALIDATE_BUILD=true
+VALIDATE_BUILD=false
 
 # --- Set Python ---
 set_python() {
