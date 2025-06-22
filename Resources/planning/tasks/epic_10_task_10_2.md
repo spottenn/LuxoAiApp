@@ -35,6 +35,8 @@ graph TD;
     1.4 --> 1.2
     1.4 --> 1.6
     1.4 --> 1.7
+    1.8 --> 1.1
+    1.8 --> 1.5
     2.1 --> 2.2
     2.3 --> 2.4
     3.1 --> 1.1
@@ -92,6 +94,7 @@ graph TD;
     *   Task 6.1 (Parallelizable) (Depends on 1.5)
     *   Task 6.2 (Parallelizable) (Depends on 1.5)
     *   Task 9.2 (Parallelizable) (Depends on 1.5)
+    *   Task 1.8 (Parallelizable) (Depends on 1.1, 1.5)
 
 *   **Phase 3:** (Tasks dependent on previous phase completions)
     *   Task 1.4 (Parallelizable) (Depends on 1.1, 1.2)
