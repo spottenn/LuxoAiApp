@@ -54,12 +54,12 @@ android {
     }
     flavorDimensions += "pyVersion"
     productFlavors {
-        create("py311") { dimension = "pyVersion" }
+        create("py310") { dimension = "pyVersion" }
     }
 }
 chaquopy {
     productFlavors {
-        getByName("py312") { version = "3.12" }
+        getByName("py310") { version = "3.10" }
     }
 }
 dependencies {

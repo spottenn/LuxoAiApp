@@ -62,7 +62,7 @@ Summary of Identifiable Virtual Hardware & Limits:
 *   Process/Thread Limits: Unknown due to tool failures.
 
 6.  Preinstalled Libraries Relevant to LuxoAI:
-    *   Python: 3.12.11 (Includes pip 25.1.1)
+    *   Python: 3.10.18 
     *   Java: OpenJDK 21.0.7
     *   Gradle: 8.8
     *   Git: 2.49.0
