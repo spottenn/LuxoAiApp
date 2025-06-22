@@ -27,4 +27,3 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 **Effort Estimate:** M
 
 **Definition of Done:** A functional bash script committed to the repository. The script's functionality must be verified by executing it in a representative environment, demonstrating that it successfully sets up the build environment, performs a clean build of the LuxoAI app, executes placeholder unit tests, and adheres to disk space constraints.
----

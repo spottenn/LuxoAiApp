@@ -23,4 +23,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A system where the agent requests user confirmation via a UI dialog before performing defined sensitive/destructive actions.
----

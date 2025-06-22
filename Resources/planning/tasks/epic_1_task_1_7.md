@@ -13,5 +13,3 @@ Status: Not Started
 *   **Effort Estimate:** L
 *   **Definition of Done:**
     Caching implemented and performance improvement verified.
----
-## Epic 2 -- Repo Audit & Architecture Doc

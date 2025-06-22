@@ -22,5 +22,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** An LLM provider interface and at least one concrete implementation, allowing the agent to make LLM calls without being tied to a specific provider.
----
-## Epic 7 -- Safety & Human-in-the-Loop

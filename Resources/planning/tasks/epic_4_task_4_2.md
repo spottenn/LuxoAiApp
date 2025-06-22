@@ -21,5 +21,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A robust communication bridge allowing two-way calls between Python logic and Android (service/UI) components. Status updates from Python can be reflected in the Android UI.
----
-## Epic 5 -- OCR On-Device Integration

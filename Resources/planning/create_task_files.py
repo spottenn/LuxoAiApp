@@ -48,8 +48,8 @@ def parse_and_save_tasks():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     task_statuses = load_task_statuses(STATUS_FILE)
 
-    # Regex to find task headings (e.g., "# Epic 1 -- Task 1.1: Title")
-    task_pattern = r"^# Epic \d+ -- Task (\d+\.\d+):.*"
+    # Regex to find task headings (e.g., "# Epic 1 -- Task 1.1: Title" or "# Epic 1 -- Task 1.1a: Title")
+    task_pattern = r"^# Epic \d+ -- Task (\d+\.\d+[a-zA-Z]?):.*"
 
     tasks_data = []
     for match in re.finditer(task_pattern, content, flags=re.MULTILINE):
@@ -71,32 +71,33 @@ def parse_and_save_tasks():
         # It's the start of the next task, or EOF if this is the last task
         end_pos = tasks_data[i+1]["start_pos"] if i + 1 < len(tasks_data) else len(content)
 
-        # Slice the content for the current task
-        current_task_content = content[start_pos:end_pos]
+        # Determine the end position of the current task's content block
+        # This block extends from the current task's heading to the start of the next task's heading, or EOF.
+        next_task_start_pos = tasks_data[i+1]["start_pos"] if i + 1 < len(tasks_data) else len(content)
+        task_block_content = content[start_pos : next_task_start_pos]
 
-        # Refined logic for handling '---' separators:
-        # A '---' separator belongs to the preceding task if it's not followed by a new Epic heading.
-        # If current_task_content ends with '---' (potentially with whitespace),
-        # we need to check if what follows it *in the original document* is a new Epic heading.
+        # The actual content for the task file is everything within this block *before* its own "---" separator.
+        # The "---" separator is expected to be preceded by a newline.
+        # We find the last occurrence of "\n---" in the block. The content before it is the task's content.
+        # This handles cases where the last task's block might include extra data after its separator.
 
-        # Strip trailing whitespace from the current task's content for cleaner processing
-        # but keep a temporary version with whitespace for regex matching.
-        temp_task_content_for_sep_check = current_task_content
+        # Find the last occurrence of a line starting with "---" (possibly with leading whitespace on the line, after the newline)
+        # within the task_block_content.
+        last_separator_match = None
+        # Regex: newline, optional whitespace, then ---
+        for match_iter in re.finditer(r"\n\s*---", task_block_content):
+            last_separator_match = match_iter
 
-        # Regex to find '---' at the very end of the task block, possibly with whitespace
-        # We anchor it to the end of the string ($)
-        separator_match = re.search(r'\n---\s*$', temp_task_content_for_sep_check, re.DOTALL)
+        idx = -1 # Default if no separator found (for debug)
+        if last_separator_match:
+            idx = last_separator_match.start() # This is the start of "\n\s*---"
+            current_task_content = task_block_content[:idx]
+        else:
+            # No separator line found
+            current_task_content = task_block_content.rstrip()
 
-        if separator_match:
-            # If a '---' is found at the end, look ahead in the *original overall content*
-            # to see if a "## Epic" heading immediately follows this task's slice.
-            # The start of lookahead is `end_pos` (which is start of next task or EOF)
-            content_after_current_task_slice = content[end_pos:]
+        # Removed debug prints for task 10.2 that were here.
 
-            # Check if the content immediately following this task is a new Epic heading
-            if re.match(r'^\s*## Epic', content_after_current_task_slice, flags=re.MULTILINE):
-                # This '---' was a separator before a new Epic, so remove it from current_task_content
-                current_task_content = temp_task_content_for_sep_check[:separator_match.start()]
 
         # Construct filename (e.g., epic_1_task_1_1.md)
         epic_num = task_id.split('.')[0]

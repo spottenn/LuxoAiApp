@@ -23,4 +23,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** The CI pipeline produces a signed, versioned APK as a downloadable artifact on every successful build of the `main` branch (or on tagged releases).
----

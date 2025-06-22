@@ -24,4 +24,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A Python wrapper that allows the agent to get object detection results from Grounding DINO via Replicate using an image and a text prompt.
----

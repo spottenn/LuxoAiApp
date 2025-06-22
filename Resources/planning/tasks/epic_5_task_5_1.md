@@ -22,4 +22,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** The selected OCR model runtime is integrated into the app, and the OCR model can be loaded successfully. Basic inference path is testable.
----

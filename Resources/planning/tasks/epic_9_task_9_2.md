@@ -21,4 +21,3 @@ Status: Not Started
 **Effort Estimate:** S
 
 **Definition of Done:** Clear documentation for setting up and using the secrets-injection mechanism.
----

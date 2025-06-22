@@ -23,4 +23,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A working secrets management system with an example file, gitignore rules, and integration points for Android/Gradle and GitHub Actions. Documentation for usage.
----

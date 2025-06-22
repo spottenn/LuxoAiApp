@@ -22,4 +22,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A functional foreground service that starts on button press, shows a notification, and continues running when the app is backgrounded.
----

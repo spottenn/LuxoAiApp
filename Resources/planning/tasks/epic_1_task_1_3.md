@@ -21,4 +21,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** The LuxoAI app successfully builds with Chaquopy, and a basic Python script runs on app startup, with its output visible in Android's Logcat.
----

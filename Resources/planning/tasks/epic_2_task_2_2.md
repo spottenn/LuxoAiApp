@@ -12,4 +12,3 @@ Status: Not Started
 *   **Effort Estimate:** M
 *   **Definition of Done:**
     README updated with project overview and diagram link.
----

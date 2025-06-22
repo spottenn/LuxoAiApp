@@ -23,5 +23,3 @@ Status: Not Started
 **Effort Estimate:** M (if pursued)
 
 **Definition of Done:** Either FTL is integrated for test runs within the budget, or a documented decision is made not to use it based on cost.
----
-## Epic 9 -- Docs & Developer UX

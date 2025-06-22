@@ -14,4 +14,3 @@ Status: Not Started
 *   **Effort Estimate:** S
 *   **Definition of Done:**
     Script and CI job for task splitting are implemented.
----

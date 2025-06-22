@@ -21,5 +21,3 @@ Status: Not Started
 **Effort Estimate:** S
 
 **Definition of Done:** Documented commit message conventions and code style guidelines.
----
-## Epic 10 -- Sideloadable Release

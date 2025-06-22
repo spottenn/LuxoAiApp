@@ -23,5 +23,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** An automated test that measures OCR inference speed and fails CI if the <1s average or 10s hard cap is breached.
----
-## Epic 6 -- Remote Model Harnesses

@@ -22,4 +22,3 @@ Status: Not Started
 **Effort Estimate:** S
 
 **Definition of Done:** An Android app with the described UI elements. The button click logs the text field content.
----

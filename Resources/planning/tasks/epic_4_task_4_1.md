@@ -22,4 +22,3 @@ Status: Not Started
 **Effort Estimate:** L
 
 **Definition of Done:** The Android app can successfully initialize and run the core Python agent orchestrator, passing it a task string from the UI. Python logs are visible in Logcat.
----
