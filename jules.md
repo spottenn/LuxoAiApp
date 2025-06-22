@@ -57,7 +57,7 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 
 ## 6. Task Execution Protocol
 
-Upon assignment of a task (e.g., `LuxoAI/planning/tasks/epic_X_task_Y_Z.md`):
+Upon assignment of a task (e.g., `resources/planning/tasks/epic_X_task_X_Y.md`):
 
 1.  **Internalize Task File**: Parse and comprehend all details within the specified Markdown task file. This is your primary source of truth for the task.
     *   Focus on: **Background**, **Acceptance Criteria**, **Definition of Done**.

@@ -17,7 +17,6 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 **Implementation Notes:**
 *   **Disk Space Management:** The script must be highly conservative with disk space. Only essential packages should be installed. Pinned versions will help control size.
 *   **No Docker:** Docker should not be used for this task due to disk space overhead and the availability of pre-existing packages in the base system. The solution must be a bash script that directly installs and configures tools.
-*   **Pinned Versions:** All critical tools (Java, Android SDK tools, Gradle) must be installed at specific, known-stable versions to ensure reproducibility and manage disk footprint. These versions should be documented within the script or this task.
 *   **Consider Future Needs:** While this script focuses on the core build tools, it must leave adequate space for subsequent Epic 1 tasks, such as Android SDK system images (for Task 1.2) and Python dependencies via Chaquopy (for Task 1.3). This means avoiding unnecessary packages or very large versions of tools if smaller, viable alternatives exist.
 
 **Dependencies:** None
@@ -28,5 +27,5 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Effort Estimate:** M
 
-**Definition of Done:** A functional bash script committed to the repository. The script's functionality must be verified by executing it in a representative environment, demonstrating that it successfully sets up the build environment (installing pinned versions of Java, Android SDK tools, and Gradle), performs a clean build of the LuxoAI app, executes placeholder unit tests, and adheres to disk space constraints.
+**Definition of Done:** A functional bash script committed to the repository. The script's functionality must be verified by executing it in a representative environment, demonstrating that it successfully sets up the build environment, performs a clean build of the LuxoAI app, executes placeholder unit tests, and adheres to disk space constraints.
 ---
