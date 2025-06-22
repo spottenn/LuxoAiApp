@@ -1,0 +1,110 @@
+Starting Android Build Environment Setup Script
+--- Setting up Java ---
+Using JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
+openjdk version "21.0.7" 2025-04-15
+OpenJDK Runtime Environment (build 21.0.7+6-Ubuntu-0ubuntu124.04)
+OpenJDK 64-Bit Server VM (build 21.0.7+6-Ubuntu-0ubuntu124.04, mixed mode, sharing)
+Java setup complete.
+--- Setting up Gradle ---
+gradle is available in PATH.
+Gradle version:
+
+------------------------------------------------------------
+Gradle 8.8
+------------------------------------------------------------
+
+Build time:   2024-05-31 21:46:56 UTC
+Revision:     4bd1b3d3fc3f31db5a26eecb416a165b8cc36082
+
+Kotlin:       1.9.22
+Groovy:       3.0.21
+Ant:          Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+JVM:          21.0.7 (Ubuntu 21.0.7+6-Ubuntu-0ubuntu124.04)
+OS:           Linux 6.8.0 amd64
+
+Gradle setup complete (using pre-installed).
+--- Setting up Android SDK ---
+Created directory: /home/jules/android_sdk
+Downloading Android SDK command-line tools...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  146M  100  146M    0     0  75.3M      0  0:00:01  0:00:01 --:--:-- 75.3M
+Created directory: /tmp/cmdline-tools-extract
+Created directory: /home/jules/android_sdk/cmdline-tools
+Android SDK command-line tools downloaded and extracted.
+Updating/Installing SDK components...
+All SDK package licenses accepted.
+License acceptance may have had issues, continuing...
+Installing: platform-tools, android-35, build-tools;35.0.0
+[=======================================] 100% Computing updates...
+Installed packages:
+  Path                 | Version | Description                | Location
+  -------              | ------- | -------                    | -------
+  build-tools;35.0.0   | 35.0.0  | Android SDK Build-Tools 35 | build-tools/35.0.0
+  platform-tools       | 35.0.2  | Android SDK Platform-Tools | platform-tools
+  platforms;android-35 | 2       | Android SDK Platform 35    | platforms/android-35
+
+Android SDK setup complete.
+--- Verifying Environment ---
+JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
+openjdk version "21.0.7" 2025-04-15
+OpenJDK Runtime Environment (build 21.0.7+6-Ubuntu-0ubuntu124.04)
+OpenJDK 64-Bit Server VM (build 21.0.7+6-Ubuntu-0ubuntu124.04, mixed mode, sharing)
+ANDROID_HOME: /home/jules/android_sdk
+ANDROID_SDK_ROOT: /home/jules/android_sdk
+12.0
+Gradle version:
+
+------------------------------------------------------------
+Gradle 8.8
+------------------------------------------------------------
+
+Build time:   2024-05-31 21:46:56 UTC
+Revision:     4bd1b3d3fc3f31db5a26eecb416a165b8cc36082
+
+Kotlin:       1.9.22
+Groovy:       3.0.21
+Ant:          Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+JVM:          21.0.7 (Ubuntu 21.0.7+6-Ubuntu-0ubuntu124.04)
+OS:           Linux 6.8.0 amd64
+
+PATH: /home/jules/android_sdk/cmdline-tools/latest/bin:/home/jules/android_sdk/platform-tools:/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Disk space:
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  1.1G  8.2G  12% /rom/overlay
+overlayfs:/overlay/root  9.8G  1.1G  8.2G  12% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  412K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M   12K  796M   1% /run/user/1001
+Environment verification complete.
+--- Building LuxoAI App ---
+Attempting build with ./gradlew
+Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 8.11.1!
+...
+BUILD SUCCESSFUL in 4m 35s
+123 actionable tasks: 123 executed
+LuxoAI App build attempt finished.
+--- Running LuxoAI Unit Tests ---
+Placeholder unit test not found. Creating one...
+Placeholder unit test created at app/src/test/java/com/spottenn/luxoai/PlaceholderUnitTest.kt
+Attempting tests with ./gradlew
+...
+BUILD SUCCESSFUL in 25s
+57 actionable tasks: 4 executed, 53 up-to-date
+LuxoAI App unit test execution attempt finished.
+Android Build Environment Setup Script finished successfully!
+Final disk space:
+Filesystem               Size  Used Avail Use% Mounted on
+overlayfs:/overlay/root  9.8G  3.0G  6.3G  33% /
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           3.9G     0  3.9G   0% /dev/shm
+
+Noted Chaquopy Warning during build:
+Warning: Failed to compile to .pyc format: buildPython version 3.12.11 is incompatible. See https://chaquo.com/chaquopy/doc/current/android.html#android-bytecode.
+(This warning occurred for both debug and release builds but did not prevent success.)
