@@ -1,0 +1,48 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x LuxoAI/gradlew
+
+    - name: Build with Gradle
+      env:
+        # These secrets need to be configured in GitHub repository settings
+        # Settings -> Secrets and variables -> Actions -> New repository secret
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+      run: cd LuxoAI && ./gradlew build
+      # Example of running tests (will be expanded in other tasks)
+      # run: cd LuxoAI && ./gradlew test
+
+    # Further steps like running tests, creating releases, etc., will be added later.
+    # For example, to run Android tests:
+    # - name: Run Android tests
+    #   env:
+    #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    #     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    #     REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+    #   run: cd LuxoAI && ./gradlew connectedCheck # or other test tasks
+    #   # Note: Running emulator tests might require more setup (e.g., actions/setup-android)
+    #   # and specific emulator management (e.g., reactivecircus/android-emulator-runner).
+    #   # This is a placeholder for where secrets injection would be relevant for tests.

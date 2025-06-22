@@ -1,6 +1,7 @@
 package com.spottenn.luxoai
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,6 +18,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Log API keys from BuildConfig for verification
+        // Important: In a real app, avoid logging actual keys.
+        // This is for setup verification only.
+        // Consider using BuildConfig.DEBUG to only log in debug builds.
+        Log.d("MainActivitySecrets", "OpenAI Key: ${BuildConfig.OPENAI_API_KEY}")
+        Log.d("MainActivitySecrets", "Anthropic Key: ${BuildConfig.ANTHROPIC_API_KEY}")
+        Log.d("MainActivitySecrets", "Replicate Token: ${BuildConfig.REPLICATE_API_TOKEN}")
+
         setContent {
             LuxoAITheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

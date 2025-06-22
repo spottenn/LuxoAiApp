@@ -20,6 +20,16 @@ android {
         ndk {
             abiFilters += listOf("arm64-v8a", "x86_64")
         }
+
+        // Define BuildConfig fields for API keys
+        // Priority: Environment variable > .env file > default empty string
+        val openAIKey = System.getenv("OPENAI_API_KEY") ?: project.findProperty("OPENAI_API_KEY") as? String ?: ""
+        val anthropicKey = System.getenv("ANTHROPIC_API_KEY") ?: project.findProperty("ANTHROPIC_API_KEY") as? String ?: ""
+        val replicateToken = System.getenv("REPLICATE_API_TOKEN") ?: project.findProperty("REPLICATE_API_TOKEN") as? String ?: ""
+
+        buildConfigField("String", "OPENAI_API_KEY", "\"$openAIKey\"")
+        buildConfigField("String", "ANTHROPIC_API_KEY", "\"$anthropicKey\"")
+        buildConfigField("String", "REPLICATE_API_TOKEN", "\"$replicateToken\"")
     }
 
     buildTypes {
@@ -40,6 +50,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     flavorDimensions += "pyVersion"
     productFlavors {
