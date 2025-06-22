@@ -8,14 +8,13 @@ Status: Not Started
 This environment has significant disk space constraints: approximately 8.7 GB of usable disk space on the main filesystem (an overlayfs, meaning space cannot be reclaimed from the base layer) and around 3.9 GB available in `/dev/shm`. The script must be designed with these limitations in mind.
 
 **Acceptance Criteria:**
-*   A bash script successfully installs all necessary dependencies for building an Android app. This includes specific, pinned versions of Java, Android SDK command-line tools, and Gradle.
+*   A bash script successfully installs all necessary dependencies for building an Android app. This includes specific versions of Java, Android SDK command-line tools, and Gradle.
 *   The script can perform a clean build of the LuxoAI Android app.
 *   The script can execute placeholder unit tests (even if they just pass trivially initially).
-*   The script is idempotent (can be run multiple times without negative side-effects).
 *   The script's successful execution and achievement of all other relevant acceptance criteria are verified through a documented test run (e.g., logs showing successful installation, build, and test execution).
 
 **Implementation Notes:**
-*   **Disk Space Management:** The script must be highly conservative with disk space. Only essential packages should be installed. Pinned versions will help control size.
+*   A bash script successfully installs all necessary dependencies for building an Android app. This includes specific versions of Java, Android SDK command-line tools, and Gradle.
 *   **No Docker:** Docker should not be used for this task due to disk space overhead and the availability of pre-existing packages in the base system. The solution must be a bash script that directly installs and configures tools.
 *   **Consider Future Needs:** While this script focuses on the core build tools, it must leave adequate space for subsequent Epic 1 tasks, such as Android SDK system images (for Task 1.2) and Python dependencies via Chaquopy (for Task 1.3). This means avoiding unnecessary packages or very large versions of tools if smaller, viable alternatives exist.
 

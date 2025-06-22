@@ -59,7 +59,7 @@ android {
 }
 chaquopy {
     productFlavors {
-        getByName("py311") { version = "3.11" }
+        getByName("py312") { version = "3.12" }
     }
 }
 dependencies {
