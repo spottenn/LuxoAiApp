@@ -37,9 +37,11 @@ Welcome to the LuxoAI project! This project aims to convert the Python-based Mob
 
 ## Contributing
 
+For details on how to contribute to this project, including commit message conventions and code style guidelines, please see our **[Contributing Guidelines](Resources/CONTRIBUTING.md)**.
+
+A few key points:
 *   Follow the task execution protocol outlined in `jules.md`.
 *   Ensure all code changes are accompanied by relevant tests.
-*   Adhere to commit message conventions (e.g., `feat:`, `fix:`, `docs:`).
 
 ## Key Technologies
 
