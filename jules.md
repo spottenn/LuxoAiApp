@@ -48,6 +48,9 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 *   **Secrets Management**:
     *   **ABSOLUTE DIRECTIVE**: **No hardcoded secrets in the repository.**
     *   Refer to `Resources/SECRETS.md` for detailed setup instructions.
+*   **Contribution Standards**: Adhere to Conventional Commits for all changes.
+*   **Code Style**: Follow PEP 8 for Python and Kotlin Coding Conventions.
+*   Consult `Resources/CONTRIBUTING.md` for detailed commit/style guidelines and development workflow.
 
 ## 5. Operational Guardrails
 
