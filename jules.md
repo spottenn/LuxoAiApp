@@ -49,6 +49,7 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
     *   **ABSOLUTE DIRECTIVE**: **No hardcoded secrets in the repository.**
     *   **CI (GitHub Actions)**: Inject via GitHub Actions Secrets as environment variables.
     *   **Local/Jules VM**: Runtime injection mechanism defined in `epic_1_task_1_5.md`. Adhere to this standard.
+    *   Refer to `Resources/SECRETS.md` for detailed setup instructions.
 
 ## 5. Operational Guardrails
 

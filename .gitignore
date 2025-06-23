@@ -6,3 +6,7 @@ __pycache__/
 **/temp/*
 /.idea/
 /.vscode/settings.json
+
+# Secrets files
+.env
+local.properties
