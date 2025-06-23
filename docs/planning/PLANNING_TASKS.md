@@ -168,7 +168,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   Workflow runs placeholder Android unit tests and (later) instrumentation tests within the emulator.
 *   Workflow status (pass/fail) is correctly reported in GitHub.
 
-**Dependencies:** Task 1.1, Task 1.2
+**Dependencies:** Task 1.1, Task 1.2, Task 1.3, Task 1.5
 
 **Parallelizable?:** `yes`
 
@@ -242,7 +242,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   For CI (GitHub Actions), GCP service account credentials for accessing the cache bucket are securely handled via GitHub Actions secrets and made available to the Gradle build (as per Task 1.5).
 *   The configuration includes placeholders for `GCP_PROJECT_ID` and `GCP_BUCKET_NAME` that the user will fill in.
 *   Successful build execution demonstrates cache usage (e.g., `> Task ... FROM-CACHE` messages in Gradle output, or by observing build times for previously built modules).
-*   Documentation is added (e.g., in `README.md` or a new doc in `resources/docs/`) explaining:
+*   Documentation is added (e.g., in `README.md` or a new doc in `docs/`) explaining:
     *   How to create/provide GCP credentials (service account JSON).
     *   How to set the `GCP_PROJECT_ID` and `GCP_BUCKET_NAME` (e.g., via environment variables or `local.properties`).
     *   How to enable the cache for local builds.
@@ -430,7 +430,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   Python `print` statements or logging output from the agent are visible in Android's Logcat.
 *   The existing Python code from `Mobile-Agent-E/MobileAgentE/` is correctly packaged by Chaquopy.
 
-**Dependencies:** Task 1.3 (Chaquopy integration), Task 3.2 (Foreground Service)
+**Dependencies:** Task 1.3 (Chaquopy integration), Task 3.1 (Implement Minimal GUI with Text Field and 'Start Agent' Button), Task 3.2 (Foreground Service)
 
 **Parallelizable?:** `no` (critical path for agent functionality)
 
@@ -773,7 +773,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 **Background:** Developers need to know how to provide API keys and other secrets for their local development environment and how it works in CI. This was designed in Task 1.5.
 
 **Acceptance Criteria:**
-*   A section in the `README.md` (or a linked document in `/resources/docs`) explains the secrets management system.
+*   A section in the `README.md` (or a linked document in `/docs`) explains the secrets management system.
 *   It details how to use the `.env.example` file to create a local `.env` file.
 *   It lists all required secret keys.
 *   It briefly explains how secrets are loaded in the Android app and in GitHub Actions.
@@ -870,6 +870,8 @@ graph TD;
     1.3 --> 1.1
     1.4 --> 1.1
     1.4 --> 1.2
+    1.4 --> 1.3
+    1.4 --> 1.5
     1.4 --> 1.6
     1.4 --> 1.7
     1.8 --> 1.1
@@ -880,6 +882,7 @@ graph TD;
     3.2 --> 3.1
     3.3 --> 3.2
     4.1 --> 1.3
+    4.1 --> 3.1
     4.1 --> 3.2
     4.2 --> 3.3
     4.2 --> 4.1
