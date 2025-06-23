@@ -53,7 +53,7 @@ def get_last_commit_for_lines(filepath, start_line, end_line):
     abs_filepath = os.path.abspath(filepath)
     relative_filepath = os.path.relpath(abs_filepath, GIT_ROOT)
 
-    if start_line > end_line : # No lines in range or invalid range
+    if start_line == -1 or start_line > end_line : # No lines in range, invalid range, or content was empty
         # This can happen if a task content is empty after stripping metadata
         # print(f"Debug: Invalid line range for {relative_filepath}: L{start_line}-L{end_line}. Skipping git log.")
         return "NO_CONTENT_COMMIT", "1970-01-01T00:00:00Z" # Special values for empty content
