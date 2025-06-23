@@ -35,10 +35,11 @@ To add a new task:
 
 The Python script `Resources/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `Resources/planning/tasks/` directory.
 
-After making any modifications to this `PLANNING_TASKS.md` file (e.g., adding, deleting, or editing tasks), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
+After making any modifications to this `PLANNING_TASKS.md` file or the `Resources/planning/task-status.md` file (e.g., adding, deleting, or editing tasks or their statuses), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
 ```bash
 python Resources/planning/create_task_files.py
 ```
+**Note:** A GitHub Actions workflow (`.github/workflows/sync_task_files.yml`) is also set up to automatically run this script and commit any changes to the generated task files whenever `PLANNING_TASKS.md` or `task-status.md` is updated in the `main` branch. This helps ensure the individual task files in `Resources/planning/tasks/` remain synchronized with the main backlog and status files.
 
 ## Planning Aids
 
