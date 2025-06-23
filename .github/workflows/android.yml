@@ -1,5 +1,5 @@
-name: Android CI
-
+name: Android CI 
+# needs configuration for paths I think 
 on:
   push:
     branches: [ "main" ]
