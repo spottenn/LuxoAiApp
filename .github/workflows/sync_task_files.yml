@@ -5,8 +5,8 @@ on:
     branches:
       - main # Or your primary development branch
     paths:
-      - 'Resources/planning/PLANNING_TASKS.md'
-      - 'Resources/planning/task-status.md'
+      - 'resources/planning/PLANNING_TASKS.md'
+      - 'resources/planning/task-status.md'
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
           python-version: '3.x' # Use a recent Python 3 version
 
       - name: Run script to sync task files
-        run: python Resources/planning/create_task_files.py
+        run: python resources/planning/create_task_files.py
 
       - name: Commit and push changes
         run: |

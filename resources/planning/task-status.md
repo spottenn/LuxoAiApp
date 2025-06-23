@@ -1,6 +1,6 @@
 # Task Status
 - epic_10_task_10_1.md: Not Started
-- epic_10_task_10_2.md: Not Started
+- epic_10_task_10_2.md: Done
 - epic_1_task_1_1.md: Done
 - epic_1_task_1_1b.md: Done
 - epic_1_task_1_2.md: Not Started
@@ -11,7 +11,7 @@
 - epic_1_task_1_7.md: Not Started
 - epic_1_task_1_8.md: Not Started
 - epic_2_task_2_1.md: Done
-- epic_2_task_2_2.md: Not Started
+- epic_2_task_2_2.md: Done
 - epic_2_task_2_3.md: Done
 - epic_2_task_2_4.md: Done
 - epic_2_task_2_5.md: Not Started
