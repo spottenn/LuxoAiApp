@@ -80,7 +80,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Definition of Done:** A functional bash script committed to the repository. The script's functionality must be verified by executing it in a representative environment, demonstrating that it successfully sets up the build environment, performs a clean build of the LuxoAI app, executes placeholder unit tests, and adheres to disk space constraints.
 ---
-# Epic 1 -- Task 1.1 Part 2: Verify and Document Android Build Environment Script
+# Epic 1 -- Task 1.1b: Verify and Document Android Build Environment Script
 
 **Type:** `chore`
 
