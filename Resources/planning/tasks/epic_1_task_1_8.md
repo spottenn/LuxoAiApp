@@ -30,5 +30,3 @@ Status: Not Started
 *   Builds successfully utilize the cache in both local (with placeholder config) and CI environments (with secrets).
 *   Documentation for setup and configuration is provided.
 *   The `PLANNING_TASKS.md` file and its generated task file are updated.
----
-## Epic 2 -- Repo Audit & Architecture Doc
