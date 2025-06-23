@@ -1,19 +1,20 @@
 # Task Status
 - epic_10_task_10_1.md: Not Started
-- epic_10_task_10_2.md: Not Started
+- epic_10_task_10_2.md: Started
 - epic_1_task_1_1.md: Done
 - epic_1_task_1_1b.md: Done
 - epic_1_task_1_2.md: Not Started
-- epic_1_task_1_3.md: Not Started
-- epic_1_task_1_4.md: Not Started
-- epic_1_task_1_5.md: Not Started
+- epic_1_task_1_3.md: Started
+- epic_1_task_1_4.md: Started
+- epic_1_task_1_5.md: Done
 - epic_1_task_1_6.md: Not Started
-- epic_1_task_1_7.md: Not Started
+- epic_1_task_1_7.md: Started
+- epic_1_task_1_8.md: Not Started
 - epic_2_task_2_1.md: Not Started
 - epic_2_task_2_2.md: Not Started
-- epic_2_task_2_3.md: Not Started
-- epic_2_task_2_4.md: Not Started
-- epic_2_task_2_5.md: Not Started
+- epic_2_task_2_3.md: Done
+- epic_2_task_2_4.md: Done
+- epic_2_task_2_5.md: Done
 - epic_3_task_3_1.md: Not Started
 - epic_3_task_3_2.md: Not Started
 - epic_3_task_3_3.md: Not Started
@@ -30,6 +31,6 @@
 - epic_8_task_8_2.md: Not Started
 - epic_8_task_8_3.md: Not Started
 - epic_8_task_8_4.md: Not Started
-- epic_9_task_9_1.md: Not Started
-- epic_9_task_9_2.md: Not Started
-- epic_9_task_9_3.md: Not Started
+- epic_9_task_9_1.md: Started
+- epic_9_task_9_2.md: Done
+- epic_9_task_9_3.md: Done
