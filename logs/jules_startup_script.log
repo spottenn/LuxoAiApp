@@ -1,0 +1,271 @@
++ sudo mkdir /app
++ sudo chown 1001 /app
++ git config --global core.hooksPath /dev/null
++ git config --global --add url.https://github.com/.insteadOf https://github.com/
++ git config --global --add url.https://github.com/.insteadOf git@github.com:
++ git clone --depth 1 --shallow-submodules --recurse-submodules https://github.com/spottenn/LuxoAiApp /app
+Cloning into '/app'...
+Updating files: 100% (163/163), done.
+--- Starting Custom Jules VM Startup Script ---
+Environment variables for secrets have been set.
+Found setup script at /app/scripts/setup_jules_env.sh. Executing...
++ cd /app
++ set -euxo pipefail
++ echo '--- Starting Custom Jules VM Startup Script ---'
++ echo 'Environment variables for secrets have been set.'
++ PROJECT_ROOT=/app
++ SETUP_SCRIPT_PATH=/app/scripts/setup_jules_env.sh
++ '[' -f /app/scripts/setup_jules_env.sh ']'
++ echo 'Found setup script at /app/scripts/setup_jules_env.sh. Executing...'
++ chmod +x /app/scripts/setup_jules_env.sh
++ /app/scripts/setup_jules_env.sh
+++ cd /app
+++ set -euxo pipefail
+++ CMDLINE_TOOLS_VERSION=13114758
+++ CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+++ ANDROID_HOME_DIR=/home/jules/android_sdk
+++ JAVA_HOME_DIR=
+++ PLATFORM_VERSION=android-35
+++ BUILD_TOOLS_VERSION=35.0.0
+++ VALIDATE_BUILD=false
+Starting Android Build Environment Setup Script
+++ main
+++ parse_arguments
+++ [[ 0 -gt 0 ]]
+++ echo 'Starting Android Build Environment Setup Script'
+++ '[' false = true ']'
+Build validation disabled - will only setup environment (use --validate to run build)
+++ echo 'Build validation disabled - will only setup environment (use --validate to run build)'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  609M  8.7G   7% /rom/overlay
+overlayfs:/overlay/root  9.8G  609M  8.7G   7% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+++ set_python
+--- Setting Python   3.10 globally ---
+++ echo '--- Setting Python   3.10 globally ---'
+++ pyenv global 3.10.18
+Python version set globally to:
+++ echo 'Python version set globally to:'
+++ python --version
+Python 3.10.18
+++ pip --version
+pip 25.1.1 from /home/jules/.pyenv/versions/3.10.18/lib/python3.10/site-packages/pip (python 3.10)
+--- Setting up Java ---
+++ setup_java
+++ echo '--- Setting up Java ---'
+++ '[' -n /usr/lib/jvm/java-21-openjdk-amd64 ']'
+++ '[' -x /usr/lib/jvm/java-21-openjdk-amd64/bin/java ']'
+++ JAVA_HOME_DIR=/usr/lib/jvm/java-21-openjdk-amd64
+++ '[' '!' -d /usr/lib/jvm/java-21-openjdk-amd64 ']'
+++ '[' '!' -x /usr/lib/jvm/java-21-openjdk-amd64/bin/java ']'
+++ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+++ JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+++ export PATH=/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ PATH=/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Using JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
+++ echo 'Using JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64'
+++ java -version
+openjdk version "21.0.7" 2025-04-15
+OpenJDK Runtime Environment (build 21.0.7+6-Ubuntu-0ubuntu124.04)
+OpenJDK 64-Bit Server VM (build 21.0.7+6-Ubuntu-0ubuntu124.04, mixed mode, sharing)
+Java setup complete.
+++ echo 'Java setup complete.'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  613M  8.7G   7% /rom/overlay
+overlayfs:/overlay/root  9.8G  613M  8.7G   7% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+--- Setting up Gradle ---
+++ setup_gradle
+++ echo '--- Setting up Gradle ---'
+++ check_command_exists gradle
+++ command -v gradle
+gradle is available in PATH.
+Gradle version:
+++ echo 'gradle is available in PATH.'
+++ return 0
+++ echo 'Gradle version:'
+++ gradle -v
+
+------------------------------------------------------------
+Gradle 8.8
+------------------------------------------------------------
+
+Build time:   2024-05-31 21:46:56 UTC
+Revision:     4bd1b3d3fc3f31db5a26eecb416a165b8cc36082
+
+Kotlin:       1.9.22
+Groovy:       3.0.21
+Ant:          Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+JVM:          21.0.7 (Ubuntu 21.0.7+6-Ubuntu-0ubuntu124.04)
+OS:           Linux 6.8.0 amd64
+
+Gradle setup complete (using pre-installed).
+++ echo 'Gradle setup complete (using pre-installed).'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  613M  8.7G   7% /rom/overlay
+overlayfs:/overlay/root  9.8G  613M  8.7G   7% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+++ setup_android_sdk
+++ echo '--- Setting up Android SDK ---'
+++ ensure_dir_exists /home/jules/android_sdk
+--- Setting up Android SDK ---
+++ '[' '!' -d /home/jules/android_sdk ']'
+++ mkdir -p /home/jules/android_sdk
+Created directory: /home/jules/android_sdk
+Downloading Android SDK command-line tools...
+++ echo 'Created directory: /home/jules/android_sdk'
+++ '[' -d /home/jules/android_sdk/cmdline-tools/latest/bin ']'
+++ echo 'Downloading Android SDK command-line tools...'
+++ local temp_zip_path=/tmp/cmdline-tools.zip
+++ curl -Lo /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  157M  100  157M    0     0  82.3M      0  0:00:01  0:00:01 --:--:-- 82.3M
+++ local temp_extract_dir=/tmp/cmdline-tools-extract
+++ ensure_dir_exists /tmp/cmdline-tools-extract
+++ '[' '!' -d /tmp/cmdline-tools-extract ']'
+++ mkdir -p /tmp/cmdline-tools-extract
+Created directory: /tmp/cmdline-tools-extract
+++ echo 'Created directory: /tmp/cmdline-tools-extract'
+++ unzip -q /tmp/cmdline-tools.zip -d /tmp/cmdline-tools-extract
+++ ensure_dir_exists /home/jules/android_sdk/cmdline-tools
+++ '[' '!' -d /home/jules/android_sdk/cmdline-tools ']'
+++ mkdir -p /home/jules/android_sdk/cmdline-tools
+Created directory: /home/jules/android_sdk/cmdline-tools
+++ echo 'Created directory: /home/jules/android_sdk/cmdline-tools'
+++ '[' -d /home/jules/android_sdk/cmdline-tools/latest ']'
+++ mv /tmp/cmdline-tools-extract/cmdline-tools /home/jules/android_sdk/cmdline-tools/latest
+++ rm /tmp/cmdline-tools.zip
+++ rm -rf /tmp/cmdline-tools-extract
+Android SDK command-line tools downloaded and extracted.
+++ echo 'Android SDK command-line tools downloaded and extracted.'
+++ export ANDROID_HOME=/home/jules/android_sdk
+++ ANDROID_HOME=/home/jules/android_sdk
+++ export ANDROID_SDK_ROOT=/home/jules/android_sdk
+++ ANDROID_SDK_ROOT=/home/jules/android_sdk
+++ export PATH=/home/jules/android_sdk/cmdline-tools/latest/bin:/home/jules/android_sdk/platform-tools:/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Updating/Installing SDK components...
+Accepting Android SDK licenses...
+++ PATH=/home/jules/android_sdk/cmdline-tools/latest/bin:/home/jules/android_sdk/platform-tools:/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ echo 'Updating/Installing SDK components...'
+++ echo 'Accepting Android SDK licenses...'
+++ yes
+++ sdkmanager --licenses --sdk_root=/home/jules/android_sdk
+License acceptance may have had issues, continuing...
+Installing: platform-tools, android-35, build-tools;35.0.0
+++ echo 'License acceptance may have had issues, continuing...'
+++ echo 'Installing: platform-tools, android-35, build-tools;35.0.0'
+++ sdkmanager --install platform-tools 'platforms;android-35' 'build-tools;35.0.0' --sdk_root=/home/jules/android_sdk
+[=======================================] 100% Unzipping... platform-tools/sqlit
+
+++ sdkmanager --list_installed --sdk_root=/home/jules/android_sdk
+[=======================================] 100% Fetch remote repository...
+Installed packages:
+  Path                 | Version | Description                | Location
+  -------              | ------- | -------                    | -------
+  build-tools;35.0.0   | 35.0.0  | Android SDK Build-Tools 35 | build-tools/35.0.0
+  platform-tools       | 36.0.0  | Android SDK Platform-Tools | platform-tools
+  platforms;android-35 | 2       | Android SDK Platform 35    | platforms/android-35
+
+Android SDK setup complete.
+++ echo 'Android SDK setup complete.'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  1.1G  8.2G  12% /rom/overlay
+overlayfs:/overlay/root  9.8G  1.1G  8.2G  12% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+--- Verifying Environment ---
+JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
+++ verify_environment
+++ echo '--- Verifying Environment ---'
+++ echo 'JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64'
+++ java -version
+openjdk version "21.0.7" 2025-04-15
+OpenJDK Runtime Environment (build 21.0.7+6-Ubuntu-0ubuntu124.04)
+OpenJDK 64-Bit Server VM (build 21.0.7+6-Ubuntu-0ubuntu124.04, mixed mode, sharing)
+ANDROID_HOME: /home/jules/android_sdk
+ANDROID_SDK_ROOT: /home/jules/android_sdk
+++ echo 'ANDROID_HOME: /home/jules/android_sdk'
+++ echo 'ANDROID_SDK_ROOT: /home/jules/android_sdk'
+++ sdkmanager --version
+19.0
+
+Gradle version:
+++ echo 'Gradle version:'
+++ gradle -v
+
+------------------------------------------------------------
+Gradle 8.8
+------------------------------------------------------------
+
+Build time:   2024-05-31 21:46:56 UTC
+Revision:     4bd1b3d3fc3f31db5a26eecb416a165b8cc36082
+
+Kotlin:       1.9.22
+Groovy:       3.0.21
+Ant:          Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+JVM:          21.0.7 (Ubuntu 21.0.7+6-Ubuntu-0ubuntu124.04)
+OS:           Linux 6.8.0 amd64
+
+PATH: /home/jules/android_sdk/cmdline-tools/latest/bin:/home/jules/android_sdk/platform-tools:/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Disk space:
+++ echo 'PATH: /home/jules/android_sdk/cmdline-tools/latest/bin:/home/jules/android_sdk/platform-tools:/usr/lib/jvm/java-21-openjdk-amd64/bin:/home/jules/.nvm/versions/node/v22.16.0/bin:/home/jules/.pyenv/shims:/home/jules/.pyenv/bin:/home/jules/.local/bin:/home/jules/.cargo/bin:/go/bin:/usr/local/go/bin:/usr/share/gradle/bin:/usr/share/maven/bin:/home/jules/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
+++ echo 'Disk space:'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  1.1G  8.2G  12% /rom/overlay
+overlayfs:/overlay/root  9.8G  1.1G  8.2G  12% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+Environment verification complete.
+--- Skipping Build and Tests ---
+++ echo 'Environment verification complete.'
+++ '[' false = true ']'
+++ echo '--- Skipping Build and Tests ---'
+Environment setup complete. Use --validate option to run actual build and tests.
+Final disk space:
+++ echo 'Environment setup complete. Use --validate option to run actual build and tests.'
+++ echo 'Final disk space:'
+++ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/vdb                 9.8G  1.1G  8.2G  12% /rom/overlay
+overlayfs:/overlay/root  9.8G  1.1G  8.2G  12% /
+tmpfs                    3.9G     0  3.9G   0% /dev/shm
+tmpfs                    1.6G  272K  1.6G   1% /run
+tmpfs                    5.0M     0  5.0M   0% /run/lock
+tmpfs                    1.0M  4.0K 1020K   1% /run/credentials/@system
+tmpfs                    3.9G  224K  3.9G   1% /var/lib/systemd
+tmpfs                    796M  8.0K  796M   1% /run/user/1001
+Main setup script finished.
+--- Custom Jules VM Startup Script Finished ---
++ echo 'Main setup script finished.'
++ echo '--- Custom Jules VM Startup Script Finished ---'
+Saving environment state...
+Exporting environment state...
