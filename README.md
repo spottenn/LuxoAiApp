@@ -1,6 +1,18 @@
 # LuxoAI Project
 
-Welcome to the LuxoAI project! This project aims to convert the Python-based Mobile-Agent-E into an on-device Android application (`LuxoAI`), integrating its core logic and functionalities.
+## Project Overview
+
+The LuxoAI project is focused on transforming `Mobile-Agent-E`, an existing Python-based desktop automation agent, into a fully on-device Android application named `LuxoAI`. The core objective is to integrate `Mobile-Agent-E`'s logic and functionalities, enabling it to operate directly on Android devices.
+
+This involves:
+*   Utilizing the **Chaquopy** plugin to run Python code within the Android environment.
+*   Implementing on-device **Optical Character Recognition (OCR)** for screen content analysis, ensuring fast and efficient text extraction.
+*   Leveraging remote **Large Language Models (LLMs)** for planning and decision-making.
+*   Integrating with remote **Vision Models** (e.g., Grounding DINO) for advanced visual understanding tasks.
+
+The goal is to create a powerful and versatile mobile agent capable of performing complex tasks through UI interaction, informed by both local and remote AI capabilities.
+
+For a detailed visualization and breakdown of the system components and their interactions, please see the **[Architecture Overview](Resources/ARCHITECTURE.md)**.
 
 ## Modules
 
