@@ -14,7 +14,7 @@
 - epic_2_task_2_2.md: Done
 - epic_2_task_2_3.md: Done
 - epic_2_task_2_4.md: Done
-- epic_2_task_2_5.md: Not Started
+- epic_2_task_2_5.md: Done
 - epic_3_task_3_1.md: Not Started
 - epic_3_task_3_2.md: Not Started
 - epic_3_task_3_3.md: Not Started
