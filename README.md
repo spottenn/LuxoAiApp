@@ -41,6 +41,30 @@ Welcome to the LuxoAI project! This project aims to convert the Python-based Mob
 *   Ensure all code changes are accompanied by relevant tests.
 *   Adhere to commit message conventions (e.g., `feat:`, `fix:`, `docs:`).
 
+## Generating Architecture Documentation
+
+To help understand the codebase structure, a script is provided to automatically generate an architecture overview. This script scans the Python agent code (`Mobile-Agent-E/MobileAgentE/`) and the Android app code (`LuxoAI/app/src/main/`) to identify key components and their relationships.
+
+**How to run:**
+
+1.  Ensure you have Python installed and are in the root directory of the project.
+2.  Execute the script:
+    ```bash
+    python Resources/scripts/generate_architecture_docs.py
+    ```
+3.  This will generate/update the `Resources/ARCHITECTURE.md` file. This file contains:
+    *   A component diagram in PlantUML format.
+    *   A textual summary of the identified components and their interactions.
+
+**Purpose:**
+
+The `Resources/ARCHITECTURE.MD` file provides a high-level, auto-generated snapshot of the system's structure. It can be useful for:
+*   New developers or agents trying to understand the project layout.
+*   Visualizing dependencies between different parts of the system.
+*   Tracking major components as the codebase evolves (by re-running the script).
+
+Note: The analysis is based on static code analysis and may not capture all dynamic behaviors or a complete picture of every interaction. However, it serves as a good starting point for architectural exploration.
+
 ## Key Technologies
 
 *   Android (Java/Kotlin)
