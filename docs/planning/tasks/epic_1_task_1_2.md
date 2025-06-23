@@ -1,63 +1,67 @@
 Status: Not Started
 
-# Epic 1 -- Task 1.2: Advanced Scripting for Android SDK & Emulator Management (Space & Logging Aware)
+# Epic 1 -- Task 1.2: Unified Script for Android SDK & Emulator Management (Space, Logging, Detachment Aware)
 
 **Type:** `chore`
 
 **Background:**
-Automated tests for `LuxoAI` require a functional Android emulator. The execution environment (`jules.md`, `docs/jules/environment_summary_report.md`) is space-constrained (approx. 9.8GB total disk) and can be unstable, necessitating robust logging for debugging and recovery. This task focuses on creating new, dedicated scripts for advanced Android Virtual Device (AVD) management, building upon the basic SDK setup potentially handled by `scripts/setup_jules_env.sh` (Task 1.1). These scripts are critical for CI/CD and development workflows.
+Automated tests for `LuxoAI` require a functional Android emulator. The execution environment (`jules.md`, `docs/jules/environment_summary_report.md`) is space-constrained (approx. 9.8GB total disk) and can be unstable, necessitating robust logging for debugging and recovery. This task focuses on creating a **single, unified shell script** (e.g., `avd_manager.sh`) for advanced Android Virtual Device (AVD) management. This script will consolidate functionalities previously envisioned as separate and will build upon the basic SDK setup potentially handled by `scripts/setup_jules_env.sh` (Task 1.1). This script is critical for CI/CD and development workflows.
 
 **Key Considerations:**
-*   **Space Efficiency:** Scripts must be mindful of disk usage. This includes selecting minimal AVD system images (e.g., `aosp_atd` or `default` profiles, `x86_64` architecture), and providing options to clean up unused AVDs and system images. Disk space should be logged before/after significant operations.
-*   **Detailed Progress Logging:** All scripts must implement comprehensive logging of their operations (e.g., commands executed, status updates, errors, timings for long operations like emulator boot). This is crucial for diagnosing issues in potentially unstable environments.
-*   **Idempotency & Error Handling:** Scripts should be runnable multiple times without adverse effects and should handle common errors gracefully (e.g., AVD already exists, emulator fails to start).
-*   **Modularity:** Separate scripts for AVD management (create, delete, list, manage system images) and emulator control (start, stop, status) are preferred.
+*   **Single Script with Subcommands:** The script should operate via subcommands (e.g., `avd_manager.sh start_avd`, `avd_manager.sh stop_avd`, `avd_manager.sh delete_avd`).
+*   **Space Efficiency:** The script must be extremely mindful of disk usage.
+    *   When creating AVDs, it should default to or allow specification of minimal system images (e.g., `system-images;android-35;default;x86_64` or `system-images;android-35;aosp_atd;x86_64`). `aosp_atd` is preferred if available and functional for basic app testing, as it's typically smaller.
+    *   The `delete_avd` command should ensure all associated AVD files are removed to reclaim maximum disk space.
+    *   Disk space (e.g., using `df -h`) should be logged before and after significant operations like system image installation (if applicable during AVD creation), AVD creation, and AVD deletion.
+*   **Detailed Progress Logging:** The script must implement comprehensive logging for all its operations. This includes:
+    *   Commands being executed.
+    *   Status updates at each significant step.
+    *   Error messages in full.
+    *   Timings for long operations (e.g., emulator boot, image download).
+    *   This logging is crucial for diagnosing issues in potentially unstable CI environments.
+*   **Idempotency & Error Handling:** The script should be runnable multiple times without adverse effects (e.g., trying to start an AVD that's already running should be handled gracefully or inform the user). It should handle common errors robustly (e.g., AVD not found, emulator failing to start, SDK components missing).
+*   **Process Detachment:** When starting an emulator, the script must ensure the emulator process runs in the background, detached from the script's execution, allowing the script to exit while the emulator continues running (e.g., using `nohup ... &`).
 
 **Acceptance Criteria:**
-*   **SDK System Image Management:**
-    *   Script can list available Android SDK system images (e.g., for API 35).
-    *   Script can download and install a specified, space-efficient system image (e.g., `system-images;android-35;aosp_atd;x86_64` or `system-images;android-35;default;x86_64`).
-    *   Script can uninstall a specified system image to reclaim disk space.
-*   **AVD Management (`manage_avd.sh` or similar):**
-    *   Script can create a new AVD with specified characteristics (name, system image, device definition like a generic phone, API level).
-    *   Script can delete an existing AVD by name.
-    *   Script can list all created AVDs and their configurations/status.
-*   **Emulator Control (`control_emulator.sh` or similar):**
-    *   Script can start a specified AVD in headless mode (e.g., using flags like `-no-window -no-audio -no-boot-anim -gpu swiftshader_indirect`).
-    *   Script can reliably detect when the emulator has fully booted and is ready for `adb` commands (e.g., by checking `getprop sys.boot_completed`).
-    *   Script can stop a running emulator instance (e.g., using `adb emu kill`).
-    *   Script can report the status of the emulator (e.g., running, not running, which AVD).
-*   **Logging & Stability:**
-    *   All script operations are logged with sufficient detail to trace execution flow and diagnose errors.
-    *   Emulator runs stably once started.
-    *   Disk space usage is logged at critical points (install/uninstall images, create/delete AVDs).
+A single shell script (e.g., `scripts/avd_manager.sh`) is created with the following subcommands and characteristics:
+
+*   **`start_avd [avd_name]` Subcommand:**
+    *   Takes an optional AVD name (defaults to a predefined name like `luxo_avd`).
+    *   Checks if the specified AVD exists.
+    *   If the AVD does not exist:
+        *   Checks if the required system image (e.g., `system-images;android-35;default;x86_64` or `system-images;android-35;aosp_atd;x86_64`) is installed. If not, attempts to install it using `sdkmanager`.
+        *   Creates the AVD using `avdmanager create avd` with specified characteristics (name, the chosen space-efficient system image, a generic phone device definition, e.g., `pixel_6`).
+    *   Starts the specified AVD in headless mode using `emulator @<avd_name>` with flags like `-no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -read-only -no-snapshot-load -no-snapshot-save`. (Adding read-only and no-snapshot flags for better space management and faster starts).
+    *   The emulator process must be detached (e.g., `nohup ... > /tmp/emulator.log 2>&1 &`).
+    *   Reliably detects when the emulator has fully booted and is ready for `adb` commands (e.g., by polling `adb -s <emulator_id> shell getprop sys.boot_completed` until it returns `1`). The script should output the emulator ID (e.g., `emulator-5554`) once ready.
+    *   Logs all steps, including disk space checks.
+*   **`stop_avd [avd_name|emulator_id]` Subcommand:**
+    *   Takes an optional AVD name or emulator ID (e.g., `emulator-5554`). If AVD name is given, it might need to determine the emulator ID. Defaults to stopping the AVD associated with the predefined name.
+    *   Stops the running emulator instance (e.g., using `adb -s <emulator_id> emu kill`).
+    *   Provides clear logging of the action.
+*   **`delete_avd [avd_name]` Subcommand:**
+    *   Takes an optional AVD name (defaults to the predefined name `luxo_avd`).
+    *   Ensures the AVD is stopped if running.
+    *   Deletes the AVD using `avdmanager delete avd -n <avd_name>`.
+    *   Logs disk space before and after deletion to confirm space reclamation.
+*   **General Script Characteristics:**
+    *   All script operations are logged with sufficient detail (timestamps, command executed, output, errors) to trace execution flow and diagnose errors.
+    *   The script is idempotent where applicable (e.g., attempting to create an AVD that already exists should not error out but inform the user).
+    *   Handles common errors gracefully with informative messages.
+    *   Includes checks for necessary tools (`sdkmanager`, `avdmanager`, `emulator`, `adb`) and `ANDROID_HOME` being set.
 
 **Dependencies:**
-*   Task 1.1 (`scripts/setup_jules_env.sh`): Base Android SDK command-line tools, platform tools, and build tools must be installed and available in `PATH`. The new scripts will rely on `sdkmanager`, `avdmanager`, `emulator`, and `adb`.
+*   Task 1.1 (`scripts/setup_jules_env.sh`): Base Android SDK command-line tools, platform tools, and build tools must be installed and available in `PATH`. The `avd_manager.sh` script will rely on `sdkmanager`, `avdmanager`, `emulator`, and `adb` being correctly configured and accessible.
 
-**Parallelizable?:** `yes` (script development can be parallel to other non-dependent tasks)
+**Parallelizable?:** `yes`
 
-**Suggested Labels:** `ci`, `android`, `emulator`, `linux`, `scripting`, `automation`
+**Suggested Labels:** `ci`, `android`, `emulator`, `linux`, `scripting`, `automation`, `single-script`
 
-**Effort Estimate:** L (Increased from M due to enhanced requirements for logging, space management, and robustness)
+**Effort Estimate:** L (Remains L due to the complexity of robust scripting, error handling, and process management in a single file)
 
 **Definition of Done:**
-1.  New, well-documented shell scripts (`manage_avd.sh`, `control_emulator.sh` or similarly named) are created in `scripts/` that fulfill all acceptance criteria.
-2.  These scripts are executable and tested for functionality and robustness.
-3.  Task `epic_1_task_1_2.md` (this file) is updated to reflect these detailed requirements.
-4.  Relevant project documentation (`jules.md` if impacted, and a new `resources/docs/emulator_management.md`) is updated or created to explain the usage of these new scripts.
-5.  Task status updated in `docs/planning/task-status.md`.
-
-**Debugging Notes / Known Issues (from previous attempts):**
-When developing scripts that interact with the Android SDK tools (`sdkmanager`, `avdmanager`, `emulator`, `adb`), be mindful of the shell environment. Previous attempts to run such scripts encountered errors like:
-*   `sdkmanager command not found. Please ensure Android SDK command-line tools are installed and in PATH.` (and similar for `avdmanager`, `emulator`, `adb`)
-*   Suggestions from error messages included:
-    *   `You might need to run 'source /home/jules/.bashrc' or re-login if they were just installed.`
-        This indicates that even if `setup_jules_env.sh` correctly installs tools and sets `ANDROID_HOME`/`PATH` for its own execution context, subsequent scripts or shell sessions might not inherit this environment correctly without explicit action (e.g., sourcing a profile script, or ensuring the calling environment for the scripts correctly sets up `ANDROID_HOME` and `PATH`). The enhanced logging for `setup_jules_env.sh` aims to help diagnose if it's setting these variables as expected.
-        The scripts themselves (`manage_avd.sh`, `control_emulator.sh`) should also be robust in checking for `ANDROID_HOME` and the presence of necessary SDK binaries in `PATH`.
-Logs have been created for the startup script in /logs/startup.log. This log file is to show the commands that the environment runs by itself and the output of those commands, the startup script and the setup script.
-
-
-**Hints:**
-
- 
+1.  A new, well-documented shell script, named `avd_manager.sh` (or a similar clear name), is created in the `scripts/` directory that implements all specified subcommands and fulfills all acceptance criteria.
+2.  The script is executable and rigorously tested for functionality, robustness, error handling, and idempotency.
+3.  This task file (`epic_1_task_1_2.md`) is confirmed to accurately reflect these detailed requirements for the single script.
+4.  Relevant project documentation, specifically a new or updated `docs/emulator_management.md`, is created/updated to explain the usage of this new unified script, including its subcommands and any important considerations (like `ANDROID_HOME` setup).
+5.  The task status is updated to `Done` in `docs/planning/task-status.md`.
