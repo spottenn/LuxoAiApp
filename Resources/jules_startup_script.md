@@ -52,9 +52,6 @@ fi
 
 echo "--- Custom Jules VM Startup Script Finished ---"
 
-# Example of how to keep the VM running if the script is the last command in a startup sequence
-# that might otherwise exit (depending on VM provider):
-# while true; do sleep 86400; done
 ```
 
 **Explanation:**

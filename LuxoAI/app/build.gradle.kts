@@ -26,19 +26,12 @@ android {
         // TODO: For production release, consider more secure ways to handle API keys than embedding in BuildConfig.
         // This might involve fetching them from a secure backend or using obfuscation techniques.
 
-        val localProperties = java.util.Properties()
-        // Assuming local.properties is in the *root* project directory (parent of LuxoAI)
-        val localPropertiesFile = rootProject.file("local.properties")
-        if (localPropertiesFile.exists()) {
-            localPropertiesFile.inputStream().use { localProperties.load(it) }
-        }
-
-        val openAIKey = System.getenv("OPENAI_API_KEY") ?: localProperties.getProperty("OPENAI_API_KEY") ?: ""
-        val anthropicKey = System.getenv("ANTHROPIC_API_KEY") ?: localProperties.getProperty("ANTHROPIC_API_KEY") ?: "" // Assuming you might add this later
-        val replicateToken = System.getenv("REPLICATE_API_TOKEN") ?: localProperties.getProperty("REPLICATE_API_TOKEN") ?: ""
+        val openAIKey = System.getenv("OPENAI_API_KEY") ?: project.findProperty("OPENAI_API_KEY") as? String ?: ""
+        val anthropicKey = System.getenv("ANTHROPIC_API_KEY") ?: project.findProperty("ANTHROPIC_API_KEY") as? String ?: ""
+        val replicateToken = System.getenv("REPLICATE_API_TOKEN") ?: project.findProperty("REPLICATE_API_TOKEN") as? String ?: ""
 
         buildConfigField("String", "OPENAI_API_KEY", "\"$openAIKey\"")
-        buildConfigField("String", "ANTHROPIC_API_KEY", "\"$anthropicKey\"") // Keep if it's used or will be soon
+        buildConfigField("String", "ANTHROPIC_API_KEY", "\"$anthropicKey\"")
         buildConfigField("String", "REPLICATE_API_TOKEN", "\"$replicateToken\"")
     }
 
