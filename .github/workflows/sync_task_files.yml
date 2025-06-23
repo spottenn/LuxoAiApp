@@ -1,0 +1,45 @@
+name: Sync Task Files
+
+on:
+  push:
+    branches:
+      - main # Or your primary development branch
+    paths:
+      - 'Resources/planning/PLANNING_TASKS.md'
+      - 'Resources/planning/task-status.md'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # To commit back to the repo, we need a token with write access
+          # GITHUB_TOKEN has write access for pushes to the same repo
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Use a recent Python 3 version
+
+      - name: Run script to sync task files
+        run: python Resources/planning/create_task_files.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          # Add all changes in the tasks directory. If no changes, this will do nothing.
+          git add Resources/planning/tasks/
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "docs: Auto-sync task files from backlog"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
