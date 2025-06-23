@@ -23,7 +23,7 @@ Welcome to the LuxoAI project! This project aims to convert the Python-based Mob
     *   **Never commit secrets directly to the repository.**
     *   For detailed instructions on how to set up and manage secrets for local development (including Jules VMs and Android Studio) and CI/CD, please refer to:
         *   [`Resources/SECRETS.md`](Resources/SECRETS.md)
-        *   [`jules_startup_script.md`](jules_startup_script.md) (for Jules VM specific startup)
+        *   [`jules_startup_script.md`](Resources/jules_startup_script.md) (for Jules VM specific startup)
         *   `.env.example` (for a template of required environment variables)
 
 ## Building the Android App (`LuxoAI`)

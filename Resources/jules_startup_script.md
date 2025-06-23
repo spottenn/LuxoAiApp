@@ -5,7 +5,7 @@ This document provides a template for a startup script to be used in Jules Virtu
 **Instructions:**
 
 1.  Copy the bash script block below.
-2.  Paste it into the "Startup script" section of your Jules VM configuration UI.
+2.  Paste it into the "Initial Setup" section of your Jules repo configuration UI.
 3.  **IMPORTANT:** Replace the placeholder values (e.g., `YOUR_OPENAI_KEY_HERE`, `YOUR_REPLICATE_TOKEN_HERE`) with your actual secret API keys.
 4.  Save the VM configuration. On the next VM startup, this script will execute.
 
@@ -18,7 +18,6 @@ echo "--- Starting Custom Jules VM Startup Script ---"
 # --- BEGIN User-configurable secrets ---
 # !! IMPORTANT !!
 # Replace the placeholder values below with your actual secret keys.
-# For example: export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 export OPENAI_API_KEY="YOUR_OPENAI_KEY_HERE"
 export REPLICATE_API_TOKEN="YOUR_REPLICATE_TOKEN_HERE"
@@ -27,8 +26,6 @@ export REPLICATE_API_TOKEN="YOUR_REPLICATE_TOKEN_HERE"
 
 echo "Environment variables for secrets have been set."
 # For security, avoid printing the actual keys to logs if possible in a production/shared environment.
-# You can verify they are set by other means if necessary (e.g., python -c "import os; print(os.getenv('OPENAI_API_KEY'))")
-# inside the VM after startup.
 
 # --- END User-configurable secrets ---
 
