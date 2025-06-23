@@ -5,7 +5,7 @@ import re
 # Define paths to scan
 PYTHON_AGENT_PATH = "Mobile-Agent-E/MobileAgentE/"
 ANDROID_APP_PATH = "LuxoAI/app/src/main/"
-OUTPUT_FILE = "resources/ARCHITECTURE.md"
+OUTPUT_FILE = "docs/ARCHITECTURE.md"
 
 def analyze_python_code(directory):
     """

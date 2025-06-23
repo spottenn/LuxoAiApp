@@ -33,7 +33,7 @@ echo "Environment variables for secrets have been set."
 # This assumes the script is in the standard location within the cloned repository.
 # Adjust the path if your project structure is different.
 PROJECT_ROOT="/app" # Standard root for Jules
-SETUP_SCRIPT_PATH="${PROJECT_ROOT}/resources/scripts/setup_jules_env.sh"
+SETUP_SCRIPT_PATH="${PROJECT_ROOT}/scripts/setup_jules_env.sh"
 
 if [ -f "$SETUP_SCRIPT_PATH" ]; then
   echo "Found setup script at $SETUP_SCRIPT_PATH. Executing..."

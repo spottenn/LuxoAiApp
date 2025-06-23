@@ -3,9 +3,9 @@ import re
 
 # Constants are relative to the repository root,
 # as the script is likely executed from there by tools/users.
-PLANNING_TASKS_FILE = "resources/planning/PLANNING_TASKS.md"
-OUTPUT_DIR = "resources/planning/tasks/"
-STATUS_FILE = "resources/planning/task-status.md"
+PLANNING_TASKS_FILE = "docs/planning/PLANNING_TASKS.md"
+OUTPUT_DIR = "docs/planning/tasks/"
+STATUS_FILE = "docs/planning/task-status.md"
 
 
 def load_task_statuses(status_file_path):

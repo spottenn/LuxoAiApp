@@ -5,8 +5,8 @@ on:
     branches:
       - main # Or your primary development branch
     paths:
-      - 'resources/planning/PLANNING_TASKS.md'
-      - 'resources/planning/task-status.md'
+      - 'docs/planning/PLANNING_TASKS.md'
+      - 'docs/planning/task-status.md'
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -26,14 +26,14 @@ jobs:
           python-version: '3.x' # Use a recent Python 3 version
 
       - name: Run script to sync task files
-        run: python resources/planning/create_task_files.py
+        run: python docs/planning/create_task_files.py
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           # Add all changes in the tasks directory. If no changes, this will do nothing.
-          git add resources/planning/tasks/
+          git add docs/planning/tasks/
           # Check if there are changes to commit
           if git diff --staged --quiet; then
             echo "No changes to commit."

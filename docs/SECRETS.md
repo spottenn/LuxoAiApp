@@ -41,7 +41,7 @@ There are a few scenarios for local development:
     3.  In your Jules VM configuration UI, paste the script into the "startup script" section.
     4.  **Crucially, edit the script within the VM configuration to replace placeholder keys (e.g., `YOUR_OPENAI_KEY_HERE`) with your actual secret values.**
     5.  Save the VM configuration.
-*   **How it works**: The startup script will export the secrets as environment variables. The `resources/scripts/setup_jules_env.sh` script (called by the startup script) and subsequent Gradle builds will then be able to access these environment variables.
+*   **How it works**: The startup script will export the secrets as environment variables. The `scripts/setup_jules_env.sh` script (called by the startup script) and subsequent Gradle builds will then be able to access these environment variables.
 
 ### c. Android Studio / Local Gradle Builds for `LuxoAI`
 

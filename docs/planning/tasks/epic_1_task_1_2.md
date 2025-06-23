@@ -5,7 +5,7 @@ Status: Not Started
 **Type:** `chore`
 
 **Background:**
-Automated tests for `LuxoAI` require a functional Android emulator. The execution environment (`jules.md`, `resources/environment_summary_report.md`) is space-constrained (approx. 9.8GB total disk) and can be unstable, necessitating robust logging for debugging and recovery. This task focuses on creating new, dedicated scripts for advanced Android Virtual Device (AVD) management, building upon the basic SDK setup potentially handled by `resources/scripts/setup_jules_env.sh` (Task 1.1). These scripts are critical for CI/CD and development workflows.
+Automated tests for `LuxoAI` require a functional Android emulator. The execution environment (`jules.md`, `docs/jules/environment_summary_report.md`) is space-constrained (approx. 9.8GB total disk) and can be unstable, necessitating robust logging for debugging and recovery. This task focuses on creating new, dedicated scripts for advanced Android Virtual Device (AVD) management, building upon the basic SDK setup potentially handled by `scripts/setup_jules_env.sh` (Task 1.1). These scripts are critical for CI/CD and development workflows.
 
 **Key Considerations:**
 *   **Space Efficiency:** Scripts must be mindful of disk usage. This includes selecting minimal AVD system images (e.g., `aosp_atd` or `default` profiles, `x86_64` architecture), and providing options to clean up unused AVDs and system images. Disk space should be logged before/after significant operations.
@@ -33,7 +33,7 @@ Automated tests for `LuxoAI` require a functional Android emulator. The executio
     *   Disk space usage is logged at critical points (install/uninstall images, create/delete AVDs).
 
 **Dependencies:**
-*   Task 1.1 (`resources/scripts/setup_jules_env.sh`): Base Android SDK command-line tools, platform tools, and build tools must be installed and available in `PATH`. The new scripts will rely on `sdkmanager`, `avdmanager`, `emulator`, and `adb`.
+*   Task 1.1 (`scripts/setup_jules_env.sh`): Base Android SDK command-line tools, platform tools, and build tools must be installed and available in `PATH`. The new scripts will rely on `sdkmanager`, `avdmanager`, `emulator`, and `adb`.
 
 **Parallelizable?:** `yes` (script development can be parallel to other non-dependent tasks)
 
@@ -42,11 +42,11 @@ Automated tests for `LuxoAI` require a functional Android emulator. The executio
 **Effort Estimate:** L (Increased from M due to enhanced requirements for logging, space management, and robustness)
 
 **Definition of Done:**
-1.  New, well-documented shell scripts (`manage_avd.sh`, `control_emulator.sh` or similarly named) are created in `resources/scripts/` that fulfill all acceptance criteria.
+1.  New, well-documented shell scripts (`manage_avd.sh`, `control_emulator.sh` or similarly named) are created in `scripts/` that fulfill all acceptance criteria.
 2.  These scripts are executable and tested for functionality and robustness.
 3.  Task `epic_1_task_1_2.md` (this file) is updated to reflect these detailed requirements.
 4.  Relevant project documentation (`jules.md` if impacted, and a new `resources/docs/emulator_management.md`) is updated or created to explain the usage of these new scripts.
-5.  Task status updated in `resources/planning/task-status.md`.
+5.  Task status updated in `docs/planning/task-status.md`.
 
 **Debugging Notes / Known Issues (from previous attempts):**
 When developing scripts that interact with the Android SDK tools (`sdkmanager`, `avdmanager`, `emulator`, `adb`), be mindful of the shell environment. Previous attempts to run such scripts encountered errors like:

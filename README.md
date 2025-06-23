@@ -15,7 +15,7 @@ The LuxoAI project is focused on transforming `Mobile-Agent-E`, a Python-based d
     *   **On-Device OCR**: Optical Character Recognition will run locally on the device, utilizing models and code from the legacy `Mobile-Agent-E` project. Performance is critical, with a target of <1s average inference time.
     *   **Remote Vision & LLM**: More computationally intensive models, such as Grounding DINO for vision tasks and Large Language Models for planning, will be accessed via remote APIs (e.g., Replicate, OpenAI).
 
-For a detailed, auto-generated visualization of the system's components and their interactions, please see the [Architecture Diagram](resources/ARCHITECTURE.md). This diagram is generated from the codebase and provides a snapshot of the Python agent and Android application structures.
+For a detailed, auto-generated visualization of the system's components and their interactions, please see the [Architecture Diagram](docs/ARCHITECTURE.md). This diagram is generated from the codebase and provides a snapshot of the Python agent and Android application structures.
 
 ## Modules
 
@@ -23,28 +23,28 @@ For a detailed, auto-generated visualization of the system's components and thei
     *   The app uses Chaquopy for Python integration.
 *   **`Mobile-Agent-E/`**: The legacy Python desktop agent codebase. Core logic for OCR, UI interaction, and model communication originates here.
 *   **`resources/`**: Project-related resources, including planning documents, task definitions, and scripts.
-    *   `resources/planning/tasks/`: Detailed task specifications.
-    *   `resources/scripts/`: Utility and setup scripts.
+    *   `docs/planning/tasks/`: Detailed task specifications.
+    *   `scripts/`: Utility and setup scripts.
 *   **`jules.md`**: Core directives and context for AI agents working on this project. **All contributors (human or AI) must read this.**
 
 ## Getting Started
 
 1.  **Familiarize yourself with `jules.md`**: This document contains crucial information about the project architecture, development protocols, and operational guardrails.
 2.  **Environment Setup**:
-    *   For general development and Jules VM setup, refer to the script `resources/scripts/setup_jules_env.sh`.
+    *   For general development and Jules VM setup, refer to the script `scripts/setup_jules_env.sh`.
     *   Specific task requirements might have additional setup notes (e.g., `epic_1_task_1_1.md`).
 3.  **Secrets Management**:
     *   API keys and other sensitive credentials are required for development and interacting with external services (OpenAI, Replicate, etc.).
     *   **Never commit secrets directly to the repository.**
     *   For detailed instructions on how to set up and manage secrets for local development (including Jules VMs and Android Studio) and CI/CD, please refer to:
-        *   [`resources/SECRETS.md`](resources/SECRETS.md)
-        *   [`jules_startup_script.md`](resources/jules_startup_script.md) (for Jules VM specific startup)
+        *   [`docs/SECRETS.md`](docs/SECRETS.md)
+        *   [`jules_startup_script.md`](scripts/jules_startup_script.md) (for Jules VM specific startup)
         *   `.env.example` (for a template of required environment variables)
 
 ## Building the Android App (`LuxoAI`)
 
 *   The Android app is located in the `LuxoAI/` directory.
-*   It is built using Gradle. Ensure you have a compatible JDK (see `jules.md` or `resources/scripts/setup_jules_env.sh` for details) and the Android SDK configured.
+*   It is built using Gradle. Ensure you have a compatible JDK (see `jules.md` or `scripts/setup_jules_env.sh` for details) and the Android SDK configured.
 *   From the `LuxoAI/` directory:
     *   To build: `./gradlew build`
     *   To run unit tests: `./gradlew test`
@@ -52,7 +52,7 @@ For a detailed, auto-generated visualization of the system's components and thei
 
 ## Contributing
 
-For details on how to contribute to this project, including commit message conventions and code style guidelines, please see our **[Contributing Guidelines](resources/CONTRIBUTING.md)**.
+For details on how to contribute to this project, including commit message conventions and code style guidelines, please see our **[Contributing Guidelines](docs/CONTRIBUTING.md)**.
 
 A few key points:
 *   Follow the task execution protocol outlined in `jules.md`.
@@ -67,9 +67,9 @@ To help understand the codebase structure, a script is provided to automatically
 1.  Ensure you have Python installed and are in the root directory of the project.
 2.  Execute the script:
     ```bash
-    python resources/scripts/generate_architecture_docs.py
+    python scripts/generate_architecture_docs.py
     ```
-3.  This will generate/update the `resources/ARCHITECTURE.md` file. This file contains:
+3.  This will generate/update the `docs/ARCHITECTURE.md` file. This file contains:
     *   A component diagram in PlantUML format.
     *   A textual summary of the identified components and their interactions.
 

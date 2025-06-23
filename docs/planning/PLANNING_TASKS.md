@@ -1,6 +1,6 @@
 # Introduction and Guide
 
-This document (`resources/planning/PLANNING_TASKS.md`) serves as the central backlog for all development tasks related to the LuxoAI project. It is organized into Epics, which are large bodies of work, and individual tasks within those Epics.
+This document (`docs/planning/PLANNING_TASKS.md`) serves as the central backlog for all development tasks related to the LuxoAI project. It is organized into Epics, which are large bodies of work, and individual tasks within those Epics.
 
 ## Task Structure
 
@@ -33,13 +33,13 @@ To add a new task:
 
 ## Individual Task Files
 
-The Python script `resources/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `resources/planning/tasks/` directory.
+The Python script `docs/planning/create_task_files.py` is used to generate individual Markdown files for each task listed in this document. These files are stored in the `docs/planning/tasks/` directory.
 
-After making any modifications to this `PLANNING_TASKS.md` file or the `resources/planning/task-status.md` file (e.g., adding, deleting, or editing tasks or their statuses), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
+After making any modifications to this `PLANNING_TASKS.md` file or the `docs/planning/task-status.md` file (e.g., adding, deleting, or editing tasks or their statuses), you **must** run this script from the repository root to regenerate the individual task files and keep them in sync:
 ```bash
-python resources/planning/create_task_files.py
+python docs/planning/create_task_files.py
 ```
-**Note:** A GitHub Actions workflow (`.github/workflows/sync_task_files.yml`) is also set up to automatically run this script and commit any changes to the generated task files whenever `PLANNING_TASKS.md` or `task-status.md` is updated in the `main` branch. This helps ensure the individual task files in `resources/planning/tasks/` remain synchronized with the main backlog and status files.
+**Note:** A GitHub Actions workflow (`.github/workflows/sync_task_files.yml`) is also set up to automatically run this script and commit any changes to the generated task files whenever `PLANNING_TASKS.md` or `task-status.md` is updated in the `main` branch. This helps ensure the individual task files in `docs/planning/tasks/` remain synchronized with the main backlog and status files.
 
 ## Planning Aids
 
@@ -85,19 +85,19 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Type:** `chore`
 
-**Background:** Task 1.1 involved creating a script (`resources/scripts/setup_jules_env.sh`) to establish a headless Linux Android build and test environment. While the script has been written and covers functional aspects like dependency installation, app build, and placeholder test execution, the formal verification and documentation of its complete, successful execution, including adherence to disk space constraints, are pending. This task addresses these final validation and documentation steps.
+**Background:** Task 1.1 involved creating a script (`scripts/setup_jules_env.sh`) to establish a headless Linux Android build and test environment. While the script has been written and covers functional aspects like dependency installation, app build, and placeholder test execution, the formal verification and documentation of its complete, successful execution, including adherence to disk space constraints, are pending. This task addresses these final validation and documentation steps.
 
 **Acceptance Criteria:**
-*   The `resources/scripts/setup_jules_env.sh` script is successfully executed in a representative headless Linux environment (e.g., the Jules VM).
+*   The `scripts/setup_jules_env.sh` script is successfully executed in a representative headless Linux environment (e.g., the Jules VM).
 *   The execution log demonstrates:
     *   Successful installation of all specified dependencies (Java, Android SDK, Gradle).
     *   A clean build of the `LuxoAI` Android app.
     *   Successful execution of placeholder unit tests.
 *   The execution log (or an accompanying document) clearly shows disk usage before and after script execution, confirming adherence to the project's disk space constraints (approx. 8.7 GB usable on main fs, 3.9 GB in `/dev/shm`).
 *   Any issues encountered during the test run are documented and, if script modifications are needed, they are made and re-verified.
-*   The `resources/planning/task-status.md` file is updated to reflect the completion of this verification task.
+*   The `docs/planning/task-status.md` file is updated to reflect the completion of this verification task.
 
-**Dependencies:** Task 1.1 (completion of the initial script `resources/scripts/setup_jules_env.sh`)
+**Dependencies:** Task 1.1 (completion of the initial script `scripts/setup_jules_env.sh`)
 
 **Parallelizable?:** `no`
 
@@ -108,7 +108,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 **Definition of Done:**
 *   A complete execution log of `setup_jules_env.sh` (with the `--validate` flag) is captured and stored (e.g., as a gist or committed to a relevant documentation folder if not too large, otherwise summarized with key outputs).
 *   This log and any accompanying analysis confirm all acceptance criteria of Task 1.1 and this task are met, especially regarding successful build, test execution, and disk space usage.
-*   The task status for this part 2 task is marked as "Done" in `resources/planning/task-status.md`.
+*   The task status for this part 2 task is marked as "Done" in `docs/planning/task-status.md`.
 ---
 # Epic 1 -- Task 1.2: Script Android SDK & Emulator Installation and Management
 
