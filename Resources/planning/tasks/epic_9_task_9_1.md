@@ -26,4 +26,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** Root `README.md` is updated with comprehensive and easy-to-follow setup, run, and test instructions.
----

@@ -12,4 +12,3 @@ Status: Not Started
 *   **Effort Estimate:** S
 *   **Definition of Done:**
     Task-split mechanism is documented.
----

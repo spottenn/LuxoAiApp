@@ -21,4 +21,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** Scripts to install SDK components and create/manage a headless AVD, integrated with the environment from Task 1.1.
----

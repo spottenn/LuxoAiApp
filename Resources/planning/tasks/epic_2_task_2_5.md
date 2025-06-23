@@ -16,5 +16,3 @@ Status: Not Started
 *   **Effort Estimate:** M
 *   **Definition of Done:**
     Dependency graph corrected and updated.
----
-## Epic 3 -- Core Android App (MVP)

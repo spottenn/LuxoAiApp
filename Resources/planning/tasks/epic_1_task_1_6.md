@@ -13,4 +13,3 @@ Status: Not Started
 *   **Effort Estimate:** M
 *   **Definition of Done:**
     Linters configured and integrated into CI.
----

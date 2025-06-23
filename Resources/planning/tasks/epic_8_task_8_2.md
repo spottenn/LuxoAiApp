@@ -26,4 +26,3 @@ Status: Not Started
 **Effort Estimate:** L
 
 **Definition of Done:** Android instrumentation tests covering basic UI and service functionality, integrated into and passing in the CI emulator.
----

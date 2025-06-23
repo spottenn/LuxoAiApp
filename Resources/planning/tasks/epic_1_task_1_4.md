@@ -23,4 +23,3 @@ Status: Not Started
 **Effort Estimate:** L
 
 **Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and (placeholder) test process in an emulator.
----

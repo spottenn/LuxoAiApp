@@ -24,4 +24,3 @@ Status: Not Started
 **Effort Estimate:** XL
 
 **Definition of Done:** At least one E2E test scenario that runs the full agent loop (UI input -> Python -> UI interaction) in the CI emulator and verifies a successful outcome.
----

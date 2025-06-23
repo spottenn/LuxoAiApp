@@ -22,5 +22,3 @@ Status: Not Started
 **Effort Estimate:** L
 
 **Definition of Done:** A functional Accessibility Service that can inspect UI elements and simulate basic interactions, with a mechanism to guide the user through enabling it.
----
-## Epic 4 -- Python Agent Embedding

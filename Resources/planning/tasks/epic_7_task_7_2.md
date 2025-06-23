@@ -22,5 +22,3 @@ Status: Not Started
 **Effort Estimate:** M
 
 **Definition of Done:** A reliable way for the user to cancel the agent's current task at any time through the Android UI.
----
-## Epic 8 -- Automated Testing Suite

@@ -24,4 +24,3 @@ Status: Not Started
 **Effort Estimate:** L
 
 **Definition of Done:** OCR inference is functional, meets the <1s average speed target on the CI emulator, and can be invoked from Python code with image input, returning structured text output.
----

@@ -861,6 +861,7 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 **Effort Estimate:** S
 
 **Definition of Done:** A `RELEASE_NOTES_TEMPLATE.md` file is committed to the repository.
+---
 
 ```mermaid
 graph TD;
