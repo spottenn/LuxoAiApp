@@ -63,6 +63,7 @@ Upon assignment of a task (e.g., `resources/planning/tasks/epic_X_task_X_Y.md`):
     *   Verify all **Dependencies** are met before proceeding.
 2.  **Implement Solution**: Develop code, tests, and documentation as per task requirements.
 3.  **Validate rigorously**: Confirm all acceptance criteria are satisfied. Ensure all existing and new tests pass.
+4.  **Update Task Status**: Mark the task as `Done` in the `Resources/planning/task-status.md`.
 4.  **Commit Artifacts**:
     *   Employ clear, structured commit messages.
     *   Prefix messages with type (e.g., `feat:`, `fix:`, `test:`, `docs:`).
