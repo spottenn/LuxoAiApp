@@ -3,7 +3,7 @@
 - epic_10_task_10_2.md: Done
 - epic_1_task_1_1.md: Done
 - epic_1_task_1_1b.md: Done
-- epic_1_task_1_2.md: Not Started
+- epic_1_task_1_2.md: Started
 - epic_1_task_1_3.md: Started
 - epic_1_task_1_4.md: Started
 - epic_1_task_1_5.md: Done

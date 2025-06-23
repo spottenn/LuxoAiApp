@@ -47,3 +47,13 @@ Automated tests for `LuxoAI` require a functional Android emulator. The executio
 3.  Task `epic_1_task_1_2.md` (this file) is updated to reflect these detailed requirements.
 4.  Relevant project documentation (`jules.md` if impacted, and a new `resources/docs/emulator_management.md`) is updated or created to explain the usage of these new scripts.
 5.  Task status updated in `resources/planning/task-status.md`.
+
+**Debugging Notes / Known Issues (from previous attempts):**
+When developing scripts that interact with the Android SDK tools (`sdkmanager`, `avdmanager`, `emulator`, `adb`), be mindful of the shell environment. Previous attempts to run such scripts encountered errors like:
+*   `sdkmanager command not found. Please ensure Android SDK command-line tools are installed and in PATH.` (and similar for `avdmanager`, `emulator`, `adb`)
+*   Suggestions from error messages included:
+    *   `You might need to run 'source /home/jules/.bashrc' or re-login if they were just installed.`
+    *   `Alternatively, ensure ANDROID_HOME/cmdline-tools/latest/bin and ANDROID_HOME/platform-tools are in PATH.`
+        This indicates that even if `setup_jules_env.sh` correctly installs tools and sets `ANDROID_HOME`/`PATH` for its own execution context, subsequent scripts or shell sessions might not inherit this environment correctly without explicit action (e.g., sourcing a profile script, or ensuring the calling environment for the scripts correctly sets up `ANDROID_HOME` and `PATH`). The enhanced logging for `setup_jules_env.sh` aims to help diagnose if it's setting these variables as expected.
+        The scripts themselves (`manage_avd.sh`, `control_emulator.sh`) should also be robust in checking for `ANDROID_HOME` and the presence of necessary SDK binaries in `PATH`.
+Logs have been created for the startup script in /logs/startup.log. This log file is to show the commands that the environment runs by itself and the output of those commands, the startup script and the setup script.

@@ -100,7 +100,7 @@ Consistent code style makes the codebase easier to read and maintain.
 
 ## Development Workflow
 
-1.  **Understand your task**: Refer to the specific task file in `Resources/planning/tasks/`.
+1.  **Understand your task**: Refer to the specific task file in `resources/planning/tasks/`.
 2.  **Create a branch**: Use a descriptive branch name (e.g., `feat/user-authentication`, `fix/payment-gateway-bug`).
 3.  **Implement and test**: Write your code and ensure it's accompanied by relevant tests.
 4.  **Commit your changes**: Follow the commit message conventions outlined above.

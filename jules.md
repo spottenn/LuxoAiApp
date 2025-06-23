@@ -11,7 +11,7 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 *   **`LuxoAI/`**: Android application project.
     *   `app/`: Main Android application module (Java/Kotlin, XML/Compose).
     *   `build.gradle.kts`, `settings.gradle.kts`: Gradle build configuration. Chaquopy (Python integration) is configured here.
-*   **`Resources/`**: Contains project resources.
+*   **`resources/`**: Contains project resources.
     *   `environment_summary_report.md`: Overview of the execution environment.
     *   `planning/tasks/`: Detailed Markdown task specifications (e.g., `epic_1_task_1_1.md`). **Strictly adhere to the assigned task file.**
 *   **`Mobile-Agent-E/`**: Legacy Python desktop agent codebase.
@@ -47,10 +47,10 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
     *   **Required Coverage**: Unit, integration, and end-to-end tests.
 *   **Secrets Management**:
     *   **ABSOLUTE DIRECTIVE**: **No hardcoded secrets in the repository.**
-    *   Refer to `Resources/SECRETS.md` for detailed setup instructions.
+    *   Refer to `resources/SECRETS.md` for detailed setup instructions.
 *   **Contribution Standards**: Adhere to Conventional Commits for all changes.
 *   **Code Style**: Follow PEP 8 for Python and Kotlin Coding Conventions.
-*   Consult `Resources/CONTRIBUTING.md` for detailed commit/style guidelines and development workflow.
+*   Consult `resources/CONTRIBUTING.md` for detailed commit/style guidelines and development workflow.
 
 ## 5. Operational Guardrails
 
@@ -66,7 +66,7 @@ Upon assignment of a task (e.g., `resources/planning/tasks/epic_X_task_X_Y.md`):
     *   Verify all **Dependencies** are met before proceeding.
 2.  **Implement Solution**: Develop code, tests, and documentation as per task requirements.
 3.  **Validate rigorously**: Confirm all acceptance criteria are satisfied. Ensure all existing and new tests pass.
-4.  **Update Task Status**: Mark the task as `Done` in the `Resources/planning/task-status.md`.
+4.  **Update Task Status**: Mark the task as `Done` in the `resources/planning/task-status.md`.
 4.  **Commit Artifacts**:
     *   Employ clear, structured commit messages.
     *   Prefix messages with type (e.g., `feat:`, `fix:`, `test:`, `docs:`).

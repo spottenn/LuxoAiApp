@@ -22,29 +22,29 @@ For a detailed, auto-generated visualization of the system's components and thei
 *   **`LuxoAI/`**: Contains the Android application project.
     *   The app uses Chaquopy for Python integration.
 *   **`Mobile-Agent-E/`**: The legacy Python desktop agent codebase. Core logic for OCR, UI interaction, and model communication originates here.
-*   **`Resources/`**: Project-related resources, including planning documents, task definitions, and scripts.
-    *   `Resources/planning/tasks/`: Detailed task specifications.
-    *   `Resources/scripts/`: Utility and setup scripts.
+*   **`resources/`**: Project-related resources, including planning documents, task definitions, and scripts.
+    *   `resources/planning/tasks/`: Detailed task specifications.
+    *   `resources/scripts/`: Utility and setup scripts.
 *   **`jules.md`**: Core directives and context for AI agents working on this project. **All contributors (human or AI) must read this.**
 
 ## Getting Started
 
 1.  **Familiarize yourself with `jules.md`**: This document contains crucial information about the project architecture, development protocols, and operational guardrails.
 2.  **Environment Setup**:
-    *   For general development and Jules VM setup, refer to the script `Resources/scripts/setup_jules_env.sh`.
+    *   For general development and Jules VM setup, refer to the script `resources/scripts/setup_jules_env.sh`.
     *   Specific task requirements might have additional setup notes (e.g., `epic_1_task_1_1.md`).
 3.  **Secrets Management**:
     *   API keys and other sensitive credentials are required for development and interacting with external services (OpenAI, Replicate, etc.).
     *   **Never commit secrets directly to the repository.**
     *   For detailed instructions on how to set up and manage secrets for local development (including Jules VMs and Android Studio) and CI/CD, please refer to:
-        *   [`Resources/SECRETS.md`](resources/SECRETS.md)
+        *   [`resources/SECRETS.md`](resources/SECRETS.md)
         *   [`jules_startup_script.md`](resources/jules_startup_script.md) (for Jules VM specific startup)
         *   `.env.example` (for a template of required environment variables)
 
 ## Building the Android App (`LuxoAI`)
 
 *   The Android app is located in the `LuxoAI/` directory.
-*   It is built using Gradle. Ensure you have a compatible JDK (see `jules.md` or `Resources/scripts/setup_jules_env.sh` for details) and the Android SDK configured.
+*   It is built using Gradle. Ensure you have a compatible JDK (see `jules.md` or `resources/scripts/setup_jules_env.sh` for details) and the Android SDK configured.
 *   From the `LuxoAI/` directory:
     *   To build: `./gradlew build`
     *   To run unit tests: `./gradlew test`
@@ -69,13 +69,13 @@ To help understand the codebase structure, a script is provided to automatically
     ```bash
     python resources/scripts/generate_architecture_docs.py
     ```
-3.  This will generate/update the `Resources/ARCHITECTURE.md` file. This file contains:
+3.  This will generate/update the `resources/ARCHITECTURE.md` file. This file contains:
     *   A component diagram in PlantUML format.
     *   A textual summary of the identified components and their interactions.
 
 **Purpose:**
 
-The `Resources/ARCHITECTURE.MD` file provides a high-level, auto-generated snapshot of the system's structure. It can be useful for:
+The `resources/ARCHITECTURE.MD` file provides a high-level, auto-generated snapshot of the system's structure. It can be useful for:
 *   New developers or agents trying to understand the project layout.
 *   Visualizing dependencies between different parts of the system.
 *   Tracking major components as the codebase evolves (by re-running the script).

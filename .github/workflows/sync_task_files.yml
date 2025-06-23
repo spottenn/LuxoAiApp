@@ -33,7 +33,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           # Add all changes in the tasks directory. If no changes, this will do nothing.
-          git add Resources/planning/tasks/
+          git add resources/planning/tasks/
           # Check if there are changes to commit
           if git diff --staged --quiet; then
             echo "No changes to commit."
