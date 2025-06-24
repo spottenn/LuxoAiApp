@@ -9,7 +9,7 @@ set -euxo pipefail
 # --- Configuration ---
 CMDLINE_TOOLS_VERSION="13114758"
 CMDLINE_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-${CMDLINE_TOOLS_VERSION}_latest.zip"
-ANDROID_HOME_DIR="$HOME/android_sdk"
+ANDROID_HOME_DIR="/dev/shm/android_sdk" # Changed to /dev/shm
 JAVA_HOME_DIR="" # Will be determined based on pre-installed Java
 
 # Android SDK components
@@ -129,12 +129,12 @@ setup_android_sdk() {
     # A more robust check would verify the version of the tools or specific installed packages.
   else
     echo "Downloading Android SDK command-line tools..."
-    local temp_zip_path="/tmp/cmdline-tools.zip"
+    local temp_zip_path="/dev/shm/cmdline-tools.zip" # Changed to /dev/shm
     curl -Lo "$temp_zip_path" "$CMDLINE_TOOLS_URL"
 
     # Expected structure: cmdline-tools/LICENSE cmdline-tools/bin/ etc.
     # We want to extract it so that $ANDROID_HOME_DIR/cmdline-tools/latest exists
-    local temp_extract_dir="/tmp/cmdline-tools-extract"
+    local temp_extract_dir="/dev/shm/cmdline-tools-extract" # Changed to /dev/shm
     ensure_dir_exists "$temp_extract_dir"
     unzip -q "$temp_zip_path" -d "$temp_extract_dir"
 
