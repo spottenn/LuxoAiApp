@@ -10,7 +10,8 @@ import re
 import importlib # Import importlib
 
 # Assuming sync_task_files.py is in the same directory or PYTHONPATH is set up
-import sync_task_files
+from scripts.tasks import sync_task_files
+
 
 class TestSyncTaskFiles(unittest.TestCase):
     """
@@ -73,8 +74,8 @@ class TestSyncTaskFiles(unittest.TestCase):
         # assert sync_task_files.GIT_ROOT == self.test_dir, "GIT_ROOT not set correctly after reload"
 
 
-        self.mock_main_tasks_file_relpath = "PLANNING_TASKS.md"
-        self.mock_individual_tasks_dir_relpath = "tasks/"
+        self.mock_main_tasks_file_relpath = "../../docs/planning/PLANNING_TASKS.md"
+        self.mock_individual_tasks_dir_relpath = "../../docs/planning/tasks/"
 
         self.mock_main_tasks_file_abs_path = os.path.join(self.test_dir, self.mock_main_tasks_file_relpath)
         self.mock_individual_tasks_dir_abs_path = os.path.join(self.test_dir, self.mock_individual_tasks_dir_relpath)
