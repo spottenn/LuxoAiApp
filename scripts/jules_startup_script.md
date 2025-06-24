@@ -24,6 +24,44 @@ export REPLICATE_API_TOKEN="YOUR_REPLICATE_TOKEN_HERE"
 # Add other environment variables for secrets as needed:
 # export ANOTHER_API_KEY="YOUR_OTHER_KEY_HERE"
 
+# --- BEGIN Google Cloud Credentials for Gradle Cache ---
+# !! IMPORTANT !!
+# Replace the placeholder JSON below with the actual content of your Google Cloud service account key file.
+# This key is used by Gradle to authenticate with Google Cloud Storage for build caching.
+# Ensure the JSON is correctly formatted and pasted within the single quotes.
+export GRADLE_SERVICE_ACCOUNT_JSON='{
+  "type": "service_account",
+  "project_id": "YOUR_PROJECT_ID",
+  "private_key_id": "YOUR_PRIVATE_KEY_ID",
+  "private_key": "-----BEGIN PRIVATE KEY-----\\nYOUR_PRIVATE_KEY\\n-----END PRIVATE KEY-----\\n",
+  "client_email": "YOUR_CLIENT_EMAIL",
+  "client_id": "YOUR_CLIENT_ID",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "YOUR_CLIENT_X509_CERT_URL",
+  "universe_domain": "googleapis.com"
+}'
+
+# Create a temporary directory for the credentials file and write the JSON to it.
+# This directory and file will be created at runtime within the Jules VM.
+GCP_CREDS_DIR="/tmp/gcp_creds"
+GOOGLE_APPLICATION_CREDENTIALS_FILE="${GCP_CREDS_DIR}/gradle_service_account.json"
+
+mkdir -p "$GCP_CREDS_DIR"
+
+# Temporarily disable command printing to avoid logging secret content
+set +x
+echo "$GRADLE_SERVICE_ACCOUNT_JSON" > "$GOOGLE_APPLICATION_CREDENTIALS_FILE"
+# Re-enable command printing
+set -x
+
+export GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_APPLICATION_CREDENTIALS_FILE"
+
+echo "Google Cloud credentials for Gradle Cache have been configured."
+# For security, avoid printing the actual keys to logs if possible in a production/shared environment.
+# --- END Google Cloud Credentials for Gradle Cache ---
+
 echo "Environment variables for secrets have been set."
 # For security, avoid printing the actual keys to logs if possible in a production/shared environment.
 
