@@ -1,25 +1,21 @@
 Status: Not Started
 
-# Epic 8 -- Task 8.4: (Optional) Hook to Firebase Test Lab if Cost-Effective
+# Epic 8 -- Task 8.4: Deprecate Firebase Test Lab Integration Task [WAS: Confirm FTL Cost-Effectiveness]
 
-**Type:** `test`
+**Type:** `chore`
 
-**Background:** Firebase Test Lab (FTL) offers running tests on a wide range of real devices. This could be beneficial if emulator testing proves insufficient or too different from real-world conditions. However, cost is a factor.
+**Background:** With the project's decision to use the self-hosted Mobile Test Platform (MTP) instead of Firebase Test Lab (FTL), the previous task (Epic 8, Task 8.4) focused on FTL cost-effectiveness and primary usage is no longer relevant.
 
 **Acceptance Criteria:**
-*   Research FTL pricing and integration effort.
-*   If total cost per run for relevant tests (e.g., instrumentation, E2E) is ≤ $0.15, proceed.
-*   Integrate Android instrumentation/E2E tests with FTL.
-*   CI workflow (Task 1.4) can trigger FTL runs.
-*   Test results from FTL are reported back to CI.
-*   If cost > $0.15, document the findings and stick to emulator-only testing for CI.
+*   This task (Epic 8, Task 8.4) is marked as deprecated or obsolete in planning documents.
+*   All references to FTL as the primary or auxiliary testing platform in other tasks and documents have been updated to reflect the MTP strategy.
 
-**Dependencies:** Task 8.2, Task 8.3
+**Dependencies:** Decision to use MTP over FTL.
 
-**Parallelizable?:** `yes`
+**Parallelizable?:** `n/a` (this task is about marking itself and ensuring other changes are done)
 
-**Suggested Labels:** `test`, `android`, `firebase`, `ci`, `research`
+**Suggested Labels:** `planning`, `documentation`, `deprecated`, `mtp`, `ftl`
 
-**Effort Estimate:** M (if pursued)
+**Effort Estimate:** XS
 
-**Definition of Done:** Either FTL is integrated for test runs within the budget, or a documented decision is made not to use it based on cost.
+**Definition of Done:** This task is marked as obsolete, and project documentation consistently reflects the move from FTL to MTP.

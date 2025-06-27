@@ -1,4 +1,4 @@
-Status: Not Started
+Status: Started
 
 # Epic 9 -- Task 9.1: Update Root README with One-Command Setup, Run, and Test Instructions
 
@@ -12,12 +12,12 @@ Status: Not Started
 *   Clear prerequisites listed (e.g., specific Java version, Android Studio version if applicable, Python version).
 *   One-command (or minimal command) instructions for:
     *   Setting up the development environment (dependencies, etc., potentially using scripts from Epic 1).
-    *   Building and running the Android app on an emulator or device.
+    *   Building the Android app and test APKs.
     *   Running Python unit tests (Task 8.1).
-    *   Running Android tests (Task 8.2).
+    *   Running Android tests (instrumentation, E2E) on the Mobile Test Platform (MTP) (as per Task 8.2, 8.3), including how to trigger them via `farm-cli-client` if relevant for local developer testing against MTP.
 *   Instructions are verified to work on a clean checkout.
 
-**Dependencies:** Task 1.1 (Setup scripts), Task 8.1 (Python tests), Task 8.2 (Android tests)
+**Dependencies:** Task 1.1 (Setup scripts), Task 1.2 (MTP Integration for test execution info, `farm-cli-client` usage), Task 8.1 (Python tests), Task 8.2 (Android tests on MTP)
 
 **Parallelizable?:** `yes` (can be updated as features become stable)
 

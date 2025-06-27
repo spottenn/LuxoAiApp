@@ -1,4 +1,4 @@
-Status: Not Started
+Status: Done
 
 # Epic 2 -- Task 2.5: Audit & Correct Dependency Graph
 *   **Type:** `chore`

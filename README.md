@@ -46,9 +46,16 @@ For a detailed, auto-generated visualization of the system's components and thei
 *   The Android app is located in the `LuxoAI/` directory.
 *   It is built using Gradle. Ensure you have a compatible JDK (see `jules.md` or `scripts/setup_jules_env.sh` for details) and the Android SDK configured.
 *   From the `LuxoAI/` directory:
-    *   To build: `./gradlew build`
-    *   To run unit tests: `./gradlew test`
-    *   To install on a connected device/emulator: `./gradlew installDebug` (or `installRelease`)
+    *   To build application and test APKs: `./gradlew assembleDebug assembleDebugAndroidTest`
+    *   To run local unit tests: `./gradlew testDebugUnitTest`
+    *   To install on a connected local device/emulator for manual debugging: `./gradlew installDebug`
+
+## Automated Testing with Mobile Test Platform (MTP)
+
+The project utilizes a self-hosted Mobile Test Platform (MTP) for running comprehensive automated tests (instrumentation, E2E, accessibility) on Dockerized Android emulators.
+*   CI integration will use the `farm-cli-client` to interact with the MTP server and execute tests, likely via the Marathon test runner.
+*   Local execution of tests against the MTP might also be possible via `farm-cli-client` if configured.
+*   Refer to `jules.md` and specific task documentation (e.g., Epic 1 tasks) for more details on the testing strategy and MTP integration.
 
 ## Contributing
 

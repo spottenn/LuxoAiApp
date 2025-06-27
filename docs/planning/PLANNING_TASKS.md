@@ -110,27 +110,33 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   This log and any accompanying analysis confirm all acceptance criteria of Task 1.1 and this task are met, especially regarding successful build, test execution, and disk space usage.
 *   The task status for this part 2 task is marked as "Done" in `docs/planning/task-status.md`.
 ---
-# Epic 1 -- Task 1.2: Script Android SDK & Emulator Installation and Management
+# Epic 1 -- Task 1.2: Integrate with Mobile Test Platform (MTP) for CI Testing [WAS: Configure Firebase Test Lab Integration]
 
 **Type:** `chore`
 
-**Background:** Automated tests require an Android emulator. This task focuses on scripting the installation of the Android SDK (if not fully covered by 1.1) and, crucially, the setup and management of an Android Virtual Device (AVD).
+**Background:** Automated testing will now use a self-hosted Mobile Test Platform (MTP) utilizing Dockerized Android emulators, instead of Firebase Test Lab or local emulators. This task focuses on integrating the `farm-cli-client` (from the MTP project) into the CI pipeline to run Android instrumentation tests using Marathon. The user will set up the `farm-server`.
 
 **Acceptance Criteria:**
-*   Script can download and install specific Android SDK platform versions and build tools.
-*   Script can create a new AVD with specified characteristics (e.g., API level, screen size, hardware profile).
-*   Script can start and stop the created AVD in headless mode.
-*   Emulator runs stably.
+*   The `farm-cli-client` is accessible and usable within the CI environment.
+*   CI workflow can successfully build the application APK and test APK.
+*   A `Marathonfile` is created and configured in the `LuxoAI` project to define test execution parameters (app/test APK paths, etc.).
+*   CI workflow uses `farm-cli-client` to:
+    *   Acquire the required number of devices from the MTP `farm-server` for a specific group.
+    *   Execute Android instrumentation tests using Marathon via the `farm-cli-client`.
+    *   Release the devices after test completion.
+*   Test results from Marathon (via `farm-cli-client`) are captured, and pass/fail status is reported in the CI workflow.
+*   Basic documentation is added explaining how to run tests via `farm-cli-client` (relevant for CI and potentially for local developer testing against MTP).
+*   Secrets for `farm-server` URL and any other MTP client configurations are securely managed in CI.
 
-**Dependencies:** Task 1.1 (or its core components)
+**Dependencies:** Task 1.1 (Build environment for app/test APKs), Task 1.5 (Secrets management for MTP server URL/credentials)
 
 **Parallelizable?:** `yes`
 
-**Suggested Labels:** `ci`, `android`, `emulator`, `linux`
+**Suggested Labels:** `ci`, `android`, `mtp`, `testing`, `marathon`, `farm-cli-client`
 
-**Effort Estimate:** M
+**Effort Estimate:** L
 
-**Definition of Done:** Scripts to install SDK components and create/manage a headless AVD, integrated with the environment from Task 1.1.
+**Definition of Done:** CI can successfully execute Android instrumentation tests on the Mobile Test Platform using `farm-cli-client` and Marathon. Basic documentation for MTP client usage is available.
 ---
 # Epic 1 -- Task 1.3: Integrate Chaquopy (Python-on-Android) into Gradle
 
@@ -154,21 +160,21 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Definition of Done:** The LuxoAI app successfully builds with Chaquopy, and a basic Python script runs on app startup, with its output visible in Android's Logcat.
 ---
-# Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build, Emulator Launch, and Tests
+# Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build and Mobile Test Platform (MTP) Execution
 
 **Type:** `chore`
 
-**Background:** To ensure code quality and catch regressions, a CI workflow is needed. This workflow will use the scripts from previous tasks to build the app, run an emulator, and execute tests on every push/PR.
+**Background:** To ensure code quality and catch regressions, a CI workflow is needed. This workflow will build the app and then use the `farm-cli-client` to execute tests on the self-hosted Mobile Test Platform (MTP).
 
 **Acceptance Criteria:**
 *   Workflow triggers on pushes to `main` and pull requests targeting `main`.
 *   Workflow successfully checks out the code.
-*   Workflow uses scripts from Task 1.1 and 1.2 to set up the build environment and an emulator.
-*   Workflow builds the Android APK.
-*   Workflow runs placeholder Android unit tests and (later) instrumentation tests within the emulator.
-*   Workflow status (pass/fail) is correctly reported in GitHub.
+*   Workflow uses script from Task 1.1 to set up the build environment.
+*   Workflow builds the Android application APK and the test APK.
+*   Workflow uses `farm-cli-client` (as configured in Task 1.2) to run tests (unit, instrumentation, E2E) on the MTP. This includes accessibility tests written using Espresso/UI Automator.
+*   Workflow status (pass/fail), based on MTP test results, is correctly reported in GitHub.
 
-**Dependencies:** Task 1.1, Task 1.2, Task 1.3, Task 1.5
+**Dependencies:** Task 1.1 (Build environment), Task 1.2 (MTP Integration with `farm-cli-client`), Task 1.3 (Chaquopy for full app build), Task 1.5 (Secrets for MTP)
 
 **Parallelizable?:** `yes`
 
@@ -176,13 +182,13 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Effort Estimate:** L
 
-**Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and (placeholder) test process in an emulator.
+**Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and triggers test execution on the Mobile Test Platform (MTP) using `farm-cli-client`, reporting pass/fail status.
 ---
 # Epic 1 -- Task 1.5: Design and Implement Secrets Injection Mechanism
 
 **Type:** `chore`
 
-**Background:** The agent will need API keys for services like OpenAI, Replicate, etc. These secrets must not be committed to the repository. A secure way to inject them at runtime is needed for both local development (Jules VMs) and CI (GitHub Actions).
+**Background:** The agent will need API keys for services like OpenAI, Replicate, etc. Additionally, the CI environment (and potentially Jules VMs if testing locally against MTP) will need configuration/secrets for the Mobile Test Platform (e.g., `farm-server` URL). These secrets must not be committed to the repository. A secure way to inject them at runtime is needed.
 
 **Acceptance Criteria:**
 *   Mechanism supports providing secrets via environment variables.
@@ -216,19 +222,19 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   **Definition of Done:**
     Linters configured and integrated into CI.
 ---
-# Epic 1 -- Task 1.7: Enable Gradle & AVD Cache in CI and Agent VMs
+# Epic 1 -- Task 1.7: Enable Gradle Build Cache in CI and Agent VMs
 *   **Type:** `chore`
 *   **Background:**
-    Use GitHub Actions cache and a reusable cache layer (e.g., GitHub Releases or cloud storage) that Jules VMs can download. Measure before/after runtime to prove speed-up.
+    To accelerate build times, enable Gradle build caching. Use GitHub Actions cache for CI. For Jules VMs, consider if a shared cache layer (e.g., via GitHub Releases or cloud storage, potentially using the GCP Build Cache from Task 1.8) is feasible and beneficial. Measure before/after runtime to prove speed-up. AVD caching is not relevant as testing uses the Mobile Test Platform.
 *   **Acceptance Criteria:**
-    *   Gradle and AVD caches are enabled in CI and agent VMs.
-    *   Speed-up is demonstrated.
-*   **Dependencies:** Task 1.4 (CI Workflow)
+    *   Gradle build caches (local and potentially remote via Task 1.8) are effectively utilized in CI and agent VMs.
+    *   Speed-up in build times is demonstrated.
+*   **Dependencies:** Task 1.4 (CI Workflow), potentially Task 1.8 (GCP Gradle Build Cache)
 *   **Parallelizable?:** `yes`
 *   **Suggested Labels:** `ci`, `cache`, `performance`, `gradle`, `android`
 *   **Effort Estimate:** L
 *   **Definition of Done:**
-    Caching implemented and performance improvement verified.
+    Gradle caching implemented and performance improvement verified.
 ---
 # Epic 1 -- Task 1.8: Integrate GCP Gradle Build Cache
 
@@ -498,25 +504,25 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   Image preprocessing steps required by the OCR model are implemented.
 *   The preprocessed image is fed to the OCR model (from Task 5.1) for inference.
 *   Postprocessing of model output is implemented to extract recognized text and bounding boxes.
-*   Average inference time (preprocessing, inference, postprocessing) is less than 1 second on the CI emulator.
+*   Average inference time (preprocessing, inference, postprocessing) is less than 1 second on the Mobile Test Platform (MTP) emulators.
 *   A hard cap of 10 seconds for inference is never exceeded.
 *   The OCR functionality is callable from the Python agent (via the bridge in Task 4.2).
 
-**Dependencies:** Task 5.1 (OCR runtime), Task 4.2 (Python-Android bridge)
+**Dependencies:** Task 5.1 (OCR runtime), Task 4.2 (Python-Android bridge), Task 1.2 (MTP Integration for performance testing environment)
 
 **Parallelizable?:** `no` (depends on model integration)
 
-**Suggested Labels:** `android`, `ml`, `ocr`, `performance`
+**Suggested Labels:** `android`, `ml`, `ocr`, `performance`, `mtp`
 
 **Effort Estimate:** L
 
-**Definition of Done:** OCR inference is functional, meets the <1s average speed target on the CI emulator, and can be invoked from Python code with image input, returning structured text output.
+**Definition of Done:** OCR inference is functional, meets the <1s average speed target on MTP emulators, and can be invoked from Python code with image input, returning structured text output.
 ---
 # Epic 5 -- Task 5.3: Create Automated Performance Test for OCR Inference Speed
 
 **Type:** `test`
 
-**Background:** To ensure OCR performance doesn't regress, an automated test is needed that measures inference speed and fails CI if it exceeds the defined cap.
+**Background:** To ensure OCR performance doesn't regress, an automated test is needed that measures inference speed and fails CI if it exceeds the defined cap. This test will run on the Mobile Test Platform (MTP).
 
 **Acceptance Criteria:**
 *   An Android instrumentation test (or a test runnable in a similar environment) is created.
@@ -524,17 +530,17 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   The test runs OCR inference (from Task 5.2) multiple times on the sample image.
 *   The test calculates the average inference time.
 *   The test asserts that the average time is below 1 second and no single run exceeds 10 seconds.
-*   This test is integrated into the CI workflow (Task 1.4) and fails the build if performance criteria are not met.
+*   This test is integrated into the CI workflow (Task 1.4) and runs on the MTP (via `farm-cli-client`), failing the build if performance criteria are not met.
 
-**Dependencies:** Task 5.2 (Functional OCR), Task 1.4 (CI workflow)
+**Dependencies:** Task 5.2 (Functional OCR), Task 1.4 (CI workflow with MTP integration)
 
 **Parallelizable?:** `yes` (once OCR is functional)
 
-**Suggested Labels:** `android`, `ml`, `ocr`, `performance`, `test`, `ci`
+**Suggested Labels:** `android`, `ml`, `ocr`, `performance`, `test`, `ci`, `mtp`
 
 **Effort Estimate:** M
 
-**Definition of Done:** An automated test that measures OCR inference speed and fails CI if the <1s average or 10s hard cap is breached.
+**Definition of Done:** An automated test that measures OCR inference speed on MTP emulators and fails CI if the <1s average or 10s hard cap is breached.
 ---
 ## Epic 6 -- Remote Model Harnesses
 
@@ -661,11 +667,11 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 
 **Definition of Done:** A suite of pytest unit tests for the Python agent code, integrated into and passing in the CI pipeline.
 ---
-# Epic 8 -- Task 8.2: Implement Android Instrumentation/Compose Tests for UI & Service
+# Epic 8 -- Task 8.2: Implement Android Instrumentation/Compose Tests for UI & Service on MTP
 
 **Type:** `test`
 
-**Background:** Android-specific components like UI elements (Jetpack Compose or XML), ViewModel interactions, and the foreground service logic need testing on an Android device or emulator.
+**Background:** Android-specific components like UI elements (Jetpack Compose or XML), ViewModel interactions, and the foreground service logic need testing. These tests will run on the Mobile Test Platform (MTP) emulators.
 
 **Acceptance Criteria:**
 *   Android instrumentation tests are set up in the project.
@@ -676,66 +682,62 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   Tests for foreground service (Task 3.2):
     *   Verify service starts and stops correctly.
     *   Verify notification is displayed.
-*   These tests run in the emulator as part of the CI workflow (Task 1.4).
+*   These tests run on MTP emulators (via `farm-cli-client` and Marathon) as part of the CI workflow (Task 1.4). This includes tests for accessibility features using Espresso/UI Automator.
 
-**Dependencies:** Task 3.1 (UI), Task 3.2 (Service), Task 1.4 (CI integration)
+**Dependencies:** Task 3.1 (UI), Task 3.2 (Service), Task 1.4 (CI integration with MTP)
 
 **Parallelizable?:** `yes` (once features are available)
 
-**Suggested Labels:** `android`, `test`, `instrumentation-test`, `jetpack-compose`, `ci`
+**Suggested Labels:** `android`, `test`, `instrumentation-test`, `jetpack-compose`, `ci`, `mtp`, `accessibility`
 
 **Effort Estimate:** L
 
-**Definition of Done:** Android instrumentation tests covering basic UI and service functionality, integrated into and passing in the CI emulator.
+**Definition of Done:** Android instrumentation tests covering basic UI, service functionality, and accessibility, integrated into and passing on the MTP via CI.
 ---
-# Epic 8 -- Task 8.3: Develop End-to-End Tests Running in CI Emulator
+# Epic 8 -- Task 8.3: Develop End-to-End Tests Running on Mobile Test Platform (MTP)
 
 **Type:** `test`
 
-**Background:** To verify the entire system works together, end-to-end (E2E) tests are needed. These simulate a user providing a task and the agent attempting to complete it, involving UI interaction, Python logic, and potentially external API calls (mocked if necessary for CI).
+**Background:** To verify the entire system works together, end-to-end (E2E) tests are needed. These simulate a user providing a task and the agent attempting to complete it, involving UI interaction (including accessibility controls), Python logic, and potentially external API calls (mocked if necessary for CI). These tests will run on the Mobile Test Platform (MTP).
 
 **Acceptance Criteria:**
-*   E2E test framework/strategy is chosen (e.g., using Android Espresso/UI Automator driven by a test script).
+*   E2E test framework/strategy is chosen (e.g., using Android Espresso/UI Automator driven by a test script, executed via Marathon).
 *   At least one E2E test case is implemented:
     *   User enters a simple task (e.g., "Open settings and turn on Wi-Fi" - initially can be a very simple, self-contained task on a test app).
-    *   Agent simulates interactions to achieve the task.
+    *   Agent simulates interactions to achieve the task, including exercising accessibility controls.
     *   Test verifies the expected outcome (e.g., Wi-Fi is enabled, or a specific UI state is reached).
-*   These tests run in the CI emulator (Task 1.4).
+*   These tests run on the MTP (via `farm-cli-client` and Marathon) as part of the CI workflow (Task 1.4).
 *   Consider how to handle variability in app UIs and agent behavior. Start with very deterministic scenarios.
 
-**Dependencies:** Task 3.3 (Accessibility for interaction), Task 4.1 (Python agent callable), Task 1.4 (CI emulator)
+**Dependencies:** Task 3.3 (Accessibility for interaction), Task 4.1 (Python agent callable), Task 1.4 (CI integration with MTP)
 
 **Parallelizable?:** `no` (integrates many components)
 
-**Suggested Labels:** `test`, `e2e`, `android`, `python`, `ci`
+**Suggested Labels:** `test`, `e2e`, `android`, `python`, `ci`, `mtp`, `accessibility`
 
 **Effort Estimate:** XL
 
-**Definition of Done:** At least one E2E test scenario that runs the full agent loop (UI input -> Python -> UI interaction) in the CI emulator and verifies a successful outcome.
+**Definition of Done:** At least one E2E test scenario that runs the full agent loop (UI input -> Python -> UI interaction via accessibility) on the MTP via CI and verifies a successful outcome.
 ---
-# Epic 8 -- Task 8.4: (Optional) Hook to Firebase Test Lab if Cost-Effective
+# Epic 8 -- Task 8.4: Deprecate Firebase Test Lab Integration Task [WAS: Confirm FTL Cost-Effectiveness]
 
-**Type:** `test`
+**Type:** `chore`
 
-**Background:** Firebase Test Lab (FTL) offers running tests on a wide range of real devices. This could be beneficial if emulator testing proves insufficient or too different from real-world conditions. However, cost is a factor.
+**Background:** With the project's decision to use the self-hosted Mobile Test Platform (MTP) instead of Firebase Test Lab (FTL), the previous task (Epic 8, Task 8.4) focused on FTL cost-effectiveness and primary usage is no longer relevant.
 
 **Acceptance Criteria:**
-*   Research FTL pricing and integration effort.
-*   If total cost per run for relevant tests (e.g., instrumentation, E2E) is ≤ $0.15, proceed.
-*   Integrate Android instrumentation/E2E tests with FTL.
-*   CI workflow (Task 1.4) can trigger FTL runs.
-*   Test results from FTL are reported back to CI.
-*   If cost > $0.15, document the findings and stick to emulator-only testing for CI.
+*   This task (Epic 8, Task 8.4) is marked as deprecated or obsolete in planning documents.
+*   All references to FTL as the primary or auxiliary testing platform in other tasks and documents have been updated to reflect the MTP strategy.
 
-**Dependencies:** Task 8.2, Task 8.3
+**Dependencies:** Decision to use MTP over FTL.
 
-**Parallelizable?:** `yes`
+**Parallelizable?:** `n/a` (this task is about marking itself and ensuring other changes are done)
 
-**Suggested Labels:** `test`, `android`, `firebase`, `ci`, `research`
+**Suggested Labels:** `planning`, `documentation`, `deprecated`, `mtp`, `ftl`
 
-**Effort Estimate:** M (if pursued)
+**Effort Estimate:** XS
 
-**Definition of Done:** Either FTL is integrated for test runs within the budget, or a documented decision is made not to use it based on cost.
+**Definition of Done:** This task is marked as obsolete, and project documentation consistently reflects the move from FTL to MTP.
 ---
 ## Epic 9 -- Docs & Developer UX
 
@@ -751,12 +753,12 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 *   Clear prerequisites listed (e.g., specific Java version, Android Studio version if applicable, Python version).
 *   One-command (or minimal command) instructions for:
     *   Setting up the development environment (dependencies, etc., potentially using scripts from Epic 1).
-    *   Building and running the Android app on an emulator or device.
+    *   Building the Android app and test APKs.
     *   Running Python unit tests (Task 8.1).
-    *   Running Android tests (Task 8.2).
+    *   Running Android tests (instrumentation, E2E) on the Mobile Test Platform (MTP) (as per Task 8.2, 8.3), including how to trigger them via `farm-cli-client` if relevant for local developer testing against MTP.
 *   Instructions are verified to work on a clean checkout.
 
-**Dependencies:** Task 1.1 (Setup scripts), Task 8.1 (Python tests), Task 8.2 (Android tests)
+**Dependencies:** Task 1.1 (Setup scripts), Task 1.2 (MTP Integration for test execution info, `farm-cli-client` usage), Task 8.1 (Python tests), Task 8.2 (Android tests on MTP)
 
 **Parallelizable?:** `yes` (can be updated as features become stable)
 
@@ -867,13 +869,15 @@ This environment has significant disk space constraints: approximately 8.7 GB of
 ```mermaid
 graph TD;
     1.2 --> 1.1
+    1.2 --> 1.5
     1.3 --> 1.1
     1.4 --> 1.1
     1.4 --> 1.2
     1.4 --> 1.3
     1.4 --> 1.5
-    1.4 --> 1.6
-    1.4 --> 1.7
+    1.6 --> 1.4
+    1.7 --> 1.4
+    1.7 --> 1.8
     1.8 --> 1.1
     1.8 --> 1.5
     2.1 --> 2.2
@@ -887,6 +891,7 @@ graph TD;
     4.2 --> 3.3
     4.2 --> 4.1
     5.1 --> 1.1
+    5.2 --> 1.2
     5.2 --> 4.2
     5.2 --> 5.1
     5.3 --> 1.4
@@ -903,9 +908,11 @@ graph TD;
     8.3 --> 1.4
     8.3 --> 3.3
     8.3 --> 4.1
-    8.4 --> 8.2
-    8.4 --> 8.3
+    8.4 --> 1.2 # Actually, 8.4 is now about deprecating FTL, its main "dependency" is the decision to use MTP.
+    # So, 8.4 doesn't have traditional execution dependencies. Let's remove them or mark as conceptual.
+    # For simplicity in the graph, we can remove direct execution lines for a deprecation task.
     9.1 --> 1.1
+    9.1 --> 1.2 # For farm-cli-client usage info
     9.1 --> 8.1
     9.1 --> 8.2
     9.2 --> 1.5

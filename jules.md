@@ -42,8 +42,9 @@ Convert the Python-based Mobile-Agent-E into an on-device Android application (`
 *   **Setup**: Refer to `epic_1_task_1_1.md` for environment setup script.
 *   **Build System**: Gradle for `LuxoAI`.
 *   **Testing Rig**:
-    *   **Primary**: Android emulator within CI.
-    *   **Auxiliary (Conditional)**: Firebase Test Lab (if per-run cost <= $0.15).
+    *   **Primary**: Self-hosted Mobile Test Platform (MTP). This platform uses Dockerized Android emulators managed by a `farm-server`. All automated tests (Unit, Integration, and End-to-End) in the CI environment will be executed on these emulators.
+    *   **Test Orchestration**: Tests will be orchestrated using the `farm-cli-client` interacting with the `farm-server`, likely employing Marathon test runner for distributing and managing Android instrumentation tests.
+    *   **Accessibility Testing**: Accessibility compliance will be tested using standard Android testing frameworks (e.g., Espresso, UI Automator) within instrumentation tests running on the MTP emulators. The capabilities are similar to what one would do on a local emulator or other device farms.
     *   **Required Coverage**: Unit, integration, and end-to-end tests.
 *   **Secrets Management**:
     *   **ABSOLUTE DIRECTIVE**: **No hardcoded secrets in the repository.**

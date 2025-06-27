@@ -1,4 +1,4 @@
-Status: Not Started
+Status: Done
 
 # Epic 2 -- Task 2.1: Auto-generate Architecture Diagram/README Section from Existing Code
 

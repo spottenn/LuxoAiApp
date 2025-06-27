@@ -1,10 +1,10 @@
-Status: Not Started
+Status: Done
 
 # Epic 1 -- Task 1.5: Design and Implement Secrets Injection Mechanism
 
 **Type:** `chore`
 
-**Background:** The agent will need API keys for services like OpenAI, Replicate, etc. These secrets must not be committed to the repository. A secure way to inject them at runtime is needed for both local development (Jules VMs) and CI (GitHub Actions).
+**Background:** The agent will need API keys for services like OpenAI, Replicate, etc. Additionally, the CI environment (and potentially Jules VMs if testing locally against MTP) will need configuration/secrets for the Mobile Test Platform (e.g., `farm-server` URL). These secrets must not be committed to the repository. A secure way to inject them at runtime is needed.
 
 **Acceptance Criteria:**
 *   Mechanism supports providing secrets via environment variables.

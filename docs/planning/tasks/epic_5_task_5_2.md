@@ -11,16 +11,16 @@ Status: Not Started
 *   Image preprocessing steps required by the OCR model are implemented.
 *   The preprocessed image is fed to the OCR model (from Task 5.1) for inference.
 *   Postprocessing of model output is implemented to extract recognized text and bounding boxes.
-*   Average inference time (preprocessing, inference, postprocessing) is less than 1 second on the CI emulator.
+*   Average inference time (preprocessing, inference, postprocessing) is less than 1 second on the Mobile Test Platform (MTP) emulators.
 *   A hard cap of 10 seconds for inference is never exceeded.
 *   The OCR functionality is callable from the Python agent (via the bridge in Task 4.2).
 
-**Dependencies:** Task 5.1 (OCR runtime), Task 4.2 (Python-Android bridge)
+**Dependencies:** Task 5.1 (OCR runtime), Task 4.2 (Python-Android bridge), Task 1.2 (MTP Integration for performance testing environment)
 
 **Parallelizable?:** `no` (depends on model integration)
 
-**Suggested Labels:** `android`, `ml`, `ocr`, `performance`
+**Suggested Labels:** `android`, `ml`, `ocr`, `performance`, `mtp`
 
 **Effort Estimate:** L
 
-**Definition of Done:** OCR inference is functional, meets the <1s average speed target on the CI emulator, and can be invoked from Python code with image input, returning structured text output.
+**Definition of Done:** OCR inference is functional, meets the <1s average speed target on MTP emulators, and can be invoked from Python code with image input, returning structured text output.

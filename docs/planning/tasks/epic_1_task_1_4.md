@@ -1,20 +1,20 @@
-Status: Not Started
+Status: Started
 
-# Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build, Emulator Launch, and Tests
+# Epic 1 -- Task 1.4: Develop GitHub Actions Workflow for Build and Mobile Test Platform (MTP) Execution
 
 **Type:** `chore`
 
-**Background:** To ensure code quality and catch regressions, a CI workflow is needed. This workflow will use the scripts from previous tasks to build the app, run an emulator, and execute tests on every push/PR.
+**Background:** To ensure code quality and catch regressions, a CI workflow is needed. This workflow will build the app and then use the `farm-cli-client` to execute tests on the self-hosted Mobile Test Platform (MTP).
 
 **Acceptance Criteria:**
 *   Workflow triggers on pushes to `main` and pull requests targeting `main`.
 *   Workflow successfully checks out the code.
-*   Workflow uses scripts from Task 1.1 and 1.2 to set up the build environment and an emulator.
-*   Workflow builds the Android APK.
-*   Workflow runs placeholder Android unit tests and (later) instrumentation tests within the emulator.
-*   Workflow status (pass/fail) is correctly reported in GitHub.
+*   Workflow uses script from Task 1.1 to set up the build environment.
+*   Workflow builds the Android application APK and the test APK.
+*   Workflow uses `farm-cli-client` (as configured in Task 1.2) to run tests (unit, instrumentation, E2E) on the MTP. This includes accessibility tests written using Espresso/UI Automator.
+*   Workflow status (pass/fail), based on MTP test results, is correctly reported in GitHub.
 
-**Dependencies:** Task 1.1, Task 1.2
+**Dependencies:** Task 1.1 (Build environment), Task 1.2 (MTP Integration with `farm-cli-client`), Task 1.3 (Chaquopy for full app build), Task 1.5 (Secrets for MTP)
 
 **Parallelizable?:** `yes`
 
@@ -22,4 +22,4 @@ Status: Not Started
 
 **Effort Estimate:** L
 
-**Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and (placeholder) test process in an emulator.
+**Definition of Done:** A functional GitHub Actions workflow file (`.github/workflows/main.yml`) that automates the build and triggers test execution on the Mobile Test Platform (MTP) using `farm-cli-client`, reporting pass/fail status.

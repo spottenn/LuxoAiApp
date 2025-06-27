@@ -12,7 +12,7 @@ Status: Not Started
 *   For CI (GitHub Actions), GCP service account credentials for accessing the cache bucket are securely handled via GitHub Actions secrets and made available to the Gradle build (as per Task 1.5).
 *   The configuration includes placeholders for `GCP_PROJECT_ID` and `GCP_BUCKET_NAME` that the user will fill in.
 *   Successful build execution demonstrates cache usage (e.g., `> Task ... FROM-CACHE` messages in Gradle output, or by observing build times for previously built modules).
-*   Documentation is added (e.g., in `README.md` or a new doc in `resources/docs/`) explaining:
+*   Documentation is added (e.g., in `README.md` or a new doc in `docs/`) explaining:
     *   How to create/provide GCP credentials (service account JSON).
     *   How to set the `GCP_PROJECT_ID` and `GCP_BUCKET_NAME` (e.g., via environment variables or `local.properties`).
     *   How to enable the cache for local builds.

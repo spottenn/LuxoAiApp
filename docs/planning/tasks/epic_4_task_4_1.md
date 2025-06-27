@@ -13,7 +13,7 @@ Status: Not Started
 *   Python `print` statements or logging output from the agent are visible in Android's Logcat.
 *   The existing Python code from `Mobile-Agent-E/MobileAgentE/` is correctly packaged by Chaquopy.
 
-**Dependencies:** Task 1.3 (Chaquopy integration), Task 3.2 (Foreground Service)
+**Dependencies:** Task 1.3 (Chaquopy integration), Task 3.1 (Implement Minimal GUI with Text Field and 'Start Agent' Button), Task 3.2 (Foreground Service)
 
 **Parallelizable?:** `no` (critical path for agent functionality)
 
